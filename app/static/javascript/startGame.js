@@ -20,7 +20,7 @@ const pieceImages = {
 };
 
 function startGame () {
-    setupBoard ('white');
+    setupBoard ('black');
     takeTurn (turn_color)
 }
 
@@ -49,6 +49,7 @@ function render_board (boardState) {
             if (imageElement) {
                 imageElement.addEventListener('click', function() {
                     pieceSelected = getPieceClicked (currSquareId, boardState);
+                    if (pieceSelected[1] = 'W')
                     // TEST
                     takeTurn (currSquareId, 'white');
                 });
@@ -86,14 +87,12 @@ function highlightMoves (squares) {
 
 
 
-function removeHighlight (squares) {
-    for (let piece in squares) {
-        let moves = squares[piece];
-        for (let move of moves) {
-            console.log ('removing:', move);
-            document.getElementById(move).classList.remove("valid-move")
-        }
-    }
+function removeHighlight () {
+    const highlightedSquare = document.querySelectorAll('.valid-move');
+
+    highlightedSquare.forEach (square => {
+        square.classList.remove('valid-move');
+    });
 }
 
 

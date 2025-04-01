@@ -61,7 +61,7 @@ body {
     position: relative;
 }
 
-.box:not(valid-move)::before {
+.box:not(.valid-move)::before {
     content: "";
 }
 .box.valid-move::after {

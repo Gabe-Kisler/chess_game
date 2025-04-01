@@ -68,18 +68,35 @@ function render_board (boardState) {
 }
 
 function getPieceClicked (squareId, boardState) {
-    console.log ('get piece clicked', squareId);
     piece = boardState[squareId];
     return piece;
 }
 
 function highlightMoves (squares) {
-    console.log ('highlight squares', squares);
-    for (let item of squares) 
-        for (let square of item) {
-        document.getElementById(square).classList.add("valid-move");
+    removeHighlight(squares);
+    
+    for (let piece in squares) {
+        let moves = squares[piece];
+        for (let move of moves) {
+            console.log ('adding valid move class list');
+            document.getElementById(move).classList.add("valid-move");
+        }
     }
 }
+
+
+
+function removeHighlight (squares) {
+    for (let piece in squares) {
+        let moves = squares[piece];
+        for (let move of moves) {
+            console.log ('removing:', move);
+            document.getElementById(move).classList.remove("valid-move")
+        }
+    }
+}
+
+
 
 function takeTurn (squareSelected, turn_color) {
 
@@ -93,7 +110,7 @@ function takeTurn (squareSelected, turn_color) {
     })
         .then (response => response.json())
         .then (validMoves => {
-            console.log (validMoves);
+            console.log ('valid moves:', validMoves);
             highlightMoves (validMoves);
         })
         .catch (error => {

@@ -2,6 +2,8 @@ const startButton = document.getElementById ('start-game')
 
 startButton.addEventListener('click', startGame);
 
+let pieceSelected = '';
+let squareId = '';
 const pieceImages = {
     "wP": "/static/resources/white-pawn.svg",
     "bP": "/static/resources/black-pawn.svg",
@@ -18,13 +20,13 @@ const pieceImages = {
 };
 
 function startGame () {
-    setupBoard ();
+    setupBoard ('white');
     takeTurn (turn_color)
 }
 
 function setupBoard (user_color) {
     fetch(`/setup_game/${user_color}`)
-        .then(reponse => reponse.json())
+        .then(response => response.json())
         .then(boardState => {
             render_board(boardState);
         });
@@ -35,20 +37,20 @@ function render_board (boardState) {
     const columns = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
     for (i = 0; i < 8; i++) {
-        for (j = 0; j <= 8; j++) {
-            squareId = rows[i] + columns[j];
+        for (j = 0; j < 8; j++) {
+            let currSquareId = rows[i] + columns[j];
 
-            const piece = boardState[squareId];
-            const squareElement = document.getElementById(squareId);
-            const imageElement = document.getElementById(`${squareId}-img`);
+            const piece = boardState[currSquareId];
+            const squareElement = document.getElementById(currSquareId);
+            const imageElement = document.getElementById(`${currSquareId}-img`);
 
             console.log (piece);
-            console.log (squareElement)
-            console.log (imageElement)
 
             if (imageElement) {
                 imageElement.addEventListener('click', function() {
-                    getPieceClicked (squareId, boardState)
+                    pieceSelected = getPieceClicked (currSquareId, boardState);
+                    // TEST
+                    takeTurn (currSquareId, 'white');
                 });
             }
 
@@ -66,32 +68,36 @@ function render_board (boardState) {
 }
 
 function getPieceClicked (squareId, boardState) {
+    console.log ('get piece clicked', squareId);
     piece = boardState[squareId];
-    takeTurn (piece, squareId);
+    return piece;
 }
-function takeTurn (turn_color) {
-    let pieceClicked = getPieceClicked ();
 
+function highlightMoves (squares) {
+    console.log ('highlight squares', squares);
+    for (let item of squares) 
+        for (let square of item) {
+        document.getElementById(square).classList.add("valid-move");
+    }
+}
+
+function takeTurn (squareSelected, turn_color) {
+
+    console.log ('taking turn with: ', pieceSelected, turn_color, squareSelected);
     fetch ('/get-valid-turns', {
         method: 'POST',
-        body: JSON.stringify ({piece: pieceClicked, color: turn_color, square: squareId}),
+        body: JSON.stringify ({piece: pieceSelected, color: turn_color, square: squareSelected}),
         headers: {
             'Content-Type': 'application/json'
         }
     })
         .then (response => response.json())
-        .then (validTurns => {
-            getValidTurns(validTurns);
+        .then (validMoves => {
+            console.log (validMoves);
+            highlightMoves (validMoves);
         })
         .catch (error => {
             console.log ('could not fetch valid turns', error);
         });
     }
-
-function getPieceClicked (squareId, boardState) {
-    piece = boardState[squareId];
-    return [squareId, piece]
-}
-
-
 

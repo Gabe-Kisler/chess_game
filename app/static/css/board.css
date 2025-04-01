@@ -57,6 +57,22 @@ body {
     border: none;
 }
 
+.box.valid-move {
+    position: relative;
+}
+
+.box.valid-move::after {
+    content: "";
+    display: block;
+    width: 30%;
+    height: 30%;
+    border-radius: 50%;
+    background-color: rgba(31, 94, 15, 0.8);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 .row:nth-child(odd) .box:nth-child(even) {
     background-color: #524b36;
 }

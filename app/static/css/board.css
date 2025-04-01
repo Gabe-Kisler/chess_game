@@ -1,0 +1,121 @@
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #304b2e;
+ 
+}
+
+#board {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 48vw;
+}
+
+#left-of-board {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 25%;
+}
+
+#right-of-board {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 12.5%;
+}
+
+.box {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 12.5%;
+    background-color: #a19877;
+    border: none;
+}
+
+.row:nth-child(odd) .box:nth-child(even) {
+    background-color: #524b36;
+}
+
+.row:nth-child(even) .box:nth-child(odd) {
+    background-color: #524b36;
+}
+
+h1 {
+    font-family: 'Fira Sans';
+    font-size: 140px;
+    font-weight: 500;
+    color: #a19877;
+    font-style: italic;
+    padding: 0;
+    margin: 0;
+}
+
+h3 {
+    font-family: 'Fira Sans';
+    font-size: 20px;
+    font-weight: 200;
+    color: #a19877; 
+}
+
+h4 {
+    font-family: 'Fira Sans';
+    font-size: 16px;
+    font-weight: 100;
+    color: #a19877;
+}
+
+button {
+    color: #1c331a;
+    background-color: #a19877;
+    border: none;
+}
+
+.game-button {
+    width: 74%;
+    height: 4vh;
+    margin-left: 50px;
+    font-family: 'Fira Sans';
+    font-size: 16px;
+    font-weight: 100;
+    color: #1c331a;
+    margin-bottom: 2vh;
+}
+
+.game-button:hover {
+    background-color: #4a7446;
+    transition-duration: .4;
+}
+
+img {
+    filter: brightness(70%);
+    width: 80%;
+    height: 10vh;
+    border: none;
+    display: none;
+    outline: none;
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>chess</title>
+    <meta charset="UTF-8">
+    <script src="{{ url_for('static', filename='js/startGame.js')}}" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static',  filename='css/board.css') }}">
+</head>
+
+<body>
+    <div id="left-of-board">
+        <h1 id="title">chess</h1>
+        <button type="button" class="game-button" id="start-game">start game</button>
+        <button type="button" class="game-button" id="game-settings">game settings</button>
+        <button type="button" class="game-button" id="color-theme">color theme</button>
+        <button type="button" class="game-button" id="account">account</button>
+    </div>
+    <div id="board">
+        <div class="row" id="8">
+            <div class="box" id="8a"><img id="8a-img"></div>
+            <div class="box" id="8b"><img id="8b-img"></div>
+            <div class="box" id="8c"><img id="8c-img"></div>
+            <div class="box" id="8d"><img id="8d-img"></div>
+            <div class="box" id="8e"><img id="8e-img"></div>
+            <div class="box" id="8f"><img id="8f-img"></div>
+            <div class="box" id="8g"><img id="8g-img"></div>
+            <div class="box" id="8h"><img id="8h-img"></div>
+        </div>
+        <div class="row" id="7">
+            <div class="box" id="7a"><img id="7a-img"></div>
+            <div class="box" id="7b"><img id="7b-img"></div>
+            <div class="box" id="7c"><img id="7c-img"></div>
+            <div class="box" id="7d"><img id="7d-img"></div>
+            <div class="box" id="7e"><img id="7e-img"></div>
+            <div class="box" id="7f"><img id="7f-img"></div>
+            <div class="box" id="7g"><img id="7g-img"></div>
+            <div class="box" id="7h"><img id="7h-img"></div>
+        </div>    
+        <div class="row" id="6">
+            <div class="box" id="6a"><img id="6a-img"></div>
+            <div class="box" id="6b"><img id="6b-img"></div>
+            <div class="box" id="6c"><img id="6c-img"></div>
+            <div class="box" id="6d"><img id="6d-img"></div>
+            <div class="box" id="6e"><img id="6e-img"></div>
+            <div class="box" id="6f"><img id="6f-img"></div>
+            <div class="box" id="6g"><img id="6g-img"></div>
+            <div class="box" id="6h"><img id="6h-img"></div>
+        </div>    
+        <div class="row" id="5">
+            <div class="box" id="5a"><img id="5a-img"></div>
+            <div class="box" id="5b"><img id="5b-img"></div>
+            <div class="box" id="5c"><img id="5c-img"></div>
+            <div class="box" id="5d"><img id="5d-img"></div>
+            <div class="box" id="5e"><img id="5e-img"></div>
+            <div class="box" id="5f"><img id="5f-img"></div>
+            <div class="box" id="5g"><img id="5g-img"></div>
+            <div class="box" id="5h"><img id="5h-img"></div>
+        </div>    
+        <div class="row" id="4">
+            <div class="box" id="4a"><img id="4a-img"></div>
+            <div class="box" id="4b"><img id="4b-img"></div>
+            <div class="box" id="4c"><img id="4c-img"></div>
+            <div class="box" id="4d"><img id="4d-img"></div>
+            <div class="box" id="4e"><img id="4e-img"></div>
+            <div class="box" id="4f"><img id="4f-img"></div>
+            <div class="box" id="4g"><img id="4g-img"></div>
+            <div class="box" id="4h"><img id="4h-img"></div>
+        </div>    
+        <div class="row" id="3">
+            <div class="box" id="3a"><img id="3a-img"></div>
+            <div class="box" id="3b"><img id="3b-img"></div>
+            <div class="box" id="3c"><img id="3c-img"></div>
+            <div class="box" id="3d"><img id="3d-img"></div>
+            <div class="box" id="3e"><img id="3e-img"></div>
+            <div class="box" id="3f"><img id="3f-img"></div>
+            <div class="box" id="3g"><img id="3g-img"></div>
+            <div class="box" id="3h"><img id="3h-img"></div>
+        </div>    
+        <div class="row" id="2">
+            <div class="box" id="2a"><img id="2a-img"></div>
+            <div class="box" id="2b"><img id="2b-img"></div>
+            <div class="box" id="2c"><img id="2c-img"></div>
+            <div class="box" id="2d"><img id="2d-img"></div>
+            <div class="box" id="2e"><img id="2e-img"></div>
+            <div class="box" id="2f"><img id="2f-img"></div>
+            <div class="box" id="2g"><img id="2g-img"></div>
+            <div class="box" id="2h"><img id="2h-img"></div>
+        </div>    
+        <div class="row" id="1">
+            <div class="box" id="1a"><img id="1a-img"></div>
+            <div class="box" id="1b"><img id="1b-img"></div>
+            <div class="box" id="1c"><img id="1c-img"></div>
+            <div class="box" id="1d"><img id="1d-img"></div>
+            <div class="box" id="1e"><img id="1e-img"></div>
+            <div class="box" id="1f"><img id="1f-img"></div>
+            <div class="box" id="1g"><img id="1g-img"></div>
+            <div class="box" id="1h"><img id="1h-img"></div>
+        </div>    
+    </div>        
+    <div id="right-of-board">
+        <div class="player-card" id="player-1">
+            <h3 id="player-1-username">player 1</h3>
+            <h4 class="time" id="player-1-time">5:00</h4>
+        </div>    
+        <div id="versus">
+            <h3>---- vs ----</h3>
+        </div>
+        <div class="player-card" id="player-2">
+            <h3 id="player-2-username">player 2</h3>
+            <h4 class="time" id="player-2-time">5:00</h4>
+        </div>    
+    </div>
+</body>  
+
+</html>

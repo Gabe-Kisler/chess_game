@@ -2,6 +2,7 @@ const startButton = document.getElementById ('start-game')
 
 startButton.addEventListener('click', startGame);
 
+let boardState = '';
 let pieceSelected = '';
 let squareId = '';
 const pieceImages = {
@@ -50,7 +51,7 @@ function render_board (boardState) {
                     pieceSelected = getPieceClicked (currSquareId, boardState);
                     if (pieceSelected[0] === 'w')
                     // TEST
-                    takeTurn (currSquareId, 'white');
+                    highlightValidMoves (currSquareId, 'white');
                 });
             }
 
@@ -95,7 +96,7 @@ function removeHighlight () {
 
 
 
-function takeTurn (squareSelected, turn_color) {
+function highlightValidMoves (squareSelected, turn_color) {
 
     console.log ('taking turn with: ', pieceSelected, turn_color, squareSelected);
     fetch ('/get-valid-turns', {
@@ -109,9 +110,43 @@ function takeTurn (squareSelected, turn_color) {
         .then (validMoves => {
             console.log ('valid moves:', validMoves);
             highlightMoves (validMoves);
+            takeTurn (validMoves, turn_color, squareSelected);
         })
         .catch (error => {
             console.log ('could not fetch valid turns', error);
         });
     }
 
+function takeTurn (validMoves, turn_color, currSquare) {
+
+    validMoves.forEach (move => {
+        let moveSquare = document.getElementById (move);
+        moveSquare.addEventListener ('click', function handleMove() {
+            movePiece (currSquare, move);
+            
+        });
+    });
+}
+
+function movePiece (currSquare, move) {
+    console.log ("moving piece from", currSquare, "to", move);
+
+    let currentSquare = document.getElementById (currSquare);
+    let squareToMove = document.getElementById(move);
+
+    let currPieceImg = document.getElementById(`${currSquare}-img`);
+    let movePieceImg = document.getElementById(`${move}-img`);
+
+    console.log ("current piece image:", currPieceImg);
+    console.log ("move piece image:", movePieceImg);
+
+    if (currPieceImg) {
+        movePieceImg.src = currPieceImg;
+        currPieceImg.style.display = "none";
+        movePieceImg.style.display = "block";
+    }
+
+}
+
+
+        

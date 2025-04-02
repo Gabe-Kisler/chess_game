@@ -19,9 +19,10 @@ def get_valid_turns (board_state, color, squareId):
             valid_moves = valid_pawn_moves
 
         elif piece_t == 'N':
-            print ('valid knight moves')
+            print ('KNIGHT CLICKED! getting valid knight turns....')
             piece = Knight (color, squareId)
             valid_knight_turns = piece.get_valid_moves (board_state, color)
+            print (valid_knight_turns)
             valid_moves = valid_knight_turns
         
     return valid_moves

@@ -20,8 +20,7 @@ const pieceImages = {
 };
 
 function startGame () {
-    setupBoard ('black');
-    takeTurn (turn_color)
+    setupBoard ('white');
 }
 
 function setupBoard (user_color) {
@@ -49,7 +48,7 @@ function render_board (boardState) {
             if (imageElement) {
                 imageElement.addEventListener('click', function() {
                     pieceSelected = getPieceClicked (currSquareId, boardState);
-                    if (pieceSelected[1] = 'W')
+                    if (pieceSelected[0] === 'w')
                     // TEST
                     takeTurn (currSquareId, 'white');
                 });
@@ -76,14 +75,13 @@ function getPieceClicked (squareId, boardState) {
 function highlightMoves (squares) {
     removeHighlight(squares);
     
-    for (let piece in squares) {
-        let moves = squares[piece];
-        for (let move of moves) {
+    for (let square in squares) {
+        let move = squares[square];
             console.log ('adding valid move class list');
             document.getElementById(move).classList.add("valid-move");
-        }
     }
 }
+
 
 
 

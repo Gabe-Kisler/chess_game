@@ -27,4 +27,5 @@ def get_valid_turns_route ():
     square = data.get('square')
     
     valid_turns = get_valid_turns (board_state, color, square)
+
     return jsonify(valid_turns)

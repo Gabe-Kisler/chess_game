@@ -3,5 +3,5 @@ class Piece:
         self.color = color
         self.position = position
 
-    def get_valid_moves (self, board):
+    def get_valid_moves (self, board, color):
         raise NotImplementedError ("")

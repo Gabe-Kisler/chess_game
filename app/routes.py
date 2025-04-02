@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, jsonify, request
-from .board import setup_board
+from .board import setup_board, update_board
 from .chess_rules import get_valid_turns
+
 
 board_state = {}
 routes = Blueprint ('routes', __name__)
@@ -20,7 +21,6 @@ def setup_game (user_color):
 @routes.route ('/get-valid-turns', methods=['POST'])
 def get_valid_turns_route ():
     global board_state
-    print ('board state:', board_state)
     data = request.get_json()
     piece = data.get('piece')
     color = data.get('color')
@@ -29,3 +29,12 @@ def get_valid_turns_route ():
     valid_turns = get_valid_turns (board_state, color, square)
 
     return jsonify(valid_turns)
+
+@routes.route ('/update-board-state', methods=['POST'])
+def update_board_state ():
+    data = request.get_json()
+    square_from = data.get('from')
+    square_to = data.get('to')
+
+    new_board_state = update_board (square_from, square_to, board_state)
+    return jsonify(new_board_state)

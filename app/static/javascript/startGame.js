@@ -36,6 +36,7 @@ function render_board (boardState) {
     const rows = ['1', '2', '3', '4', '5', '6', '7', '8'];
     const columns = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
+    console.log ('render board called:', boardState);
     for (i = 0; i < 8; i++) {
         for (j = 0; j < 8; j++) {
             let currSquareId = rows[i] + columns[j];
@@ -141,10 +142,23 @@ function movePiece (currSquare, move) {
     console.log ("move piece image:", movePieceImg);
 
     if (currPieceImg) {
-        movePieceImg.src = currPieceImg;
+        movePieceImg.src = currPieceImg.src;
         currPieceImg.style.display = "none";
         movePieceImg.style.display = "block";
     }
+
+    fetch ('/update-board-state', {
+        method: 'POST',
+        body: JSON.stringify ({ from: currSquare, to: move }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then (response => response.json())
+    .then (updatedBoardState => {
+        removeHighlight();
+        render_board(updatedBoardState);
+    });
 
 }
 

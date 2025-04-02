@@ -13,3 +13,11 @@ def setup_board(user_color):
             "7a": "bP", "7b": "bP", "7c": "bP", "7d": "bP", "7e": "bP", "7f": "bP", "7g": "bP", "7h": "bP",
             "8a": "bR", "8b": "bN", "8c": "bB", "8d": "bQ", "8e": "bK", "8f": "bB", "8g": "bN", "8h": "bR"
     }
+
+def update_board(square_from, square_to, board_state):
+    ## function to update board after move is made
+    piece_to_move = board_state.get(square_from)
+    board_state.pop(square_from)
+    board_state[square_to] = piece_to_move
+    return board_state
+

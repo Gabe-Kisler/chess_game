@@ -70,7 +70,7 @@ def get_diagonal_squares_backward (square_id, num):
     for i in range (1, num + 1):
         new_row = row - i
         new_column_index = column_index + i
-        if 1 <= new_row <= 8 and 1 <= int(new_column) <= 8:
+        if 1 <= new_row <= 8 and 0 <= columns.index(column) <= 7:
             new_column = columns[new_column_index]
             square = f"{new_row}{new_column}"
             backward_diagonal_squares.append (square)
@@ -82,7 +82,7 @@ def get_diagonal_squares_backward (square_id, num):
         if (new_row < 1 or new_column_index < 0):
             break
         new_column = columns[new_column_index]
-        if 1 <= new_row <= 8 and 1 <= int(new_column) <= 8:
+        if 1 <= new_row <= 8 and 0 <= columns.index(column) <= 7:
             square = f"{new_row}{new_column}"
             backward_diagonal_squares.append (square)
 
@@ -100,7 +100,7 @@ def get_right_squares (square_id, num):
         if new_column_index > 7:
             break
         new_column = columns[new_column_index]
-        if 1 <= row <= 8 and 1 <= int(column) <= 8:
+        if 1 <= row <= 8 and 0 <= columns.index(column) <= 7:
             square = f"{row}{new_column}"
             right_squares.append (square)
 
@@ -119,7 +119,7 @@ def get_left_squares (square_id, num):
         if new_column_index < 0:
             break
         new_column = columns[new_column_index]
-        if 1 <= row <= 8 and 1 <= int(column) <= 8:
+        if 1 <= row <= 8 and 0 <= columns.index(column) <= 7:
             square = f"{row}{new_column}"
             left_squares.append (square)
 

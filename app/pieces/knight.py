@@ -20,44 +20,48 @@ class Knight(Piece):
             match dir:
                 case 'left':
                     squares = get_left_squares (self.position, 2)
-                    new_square = squares[1]
-                    square_up = get_forward_squares (new_square, 1)
-                    square_down = get_backwards_squares (new_square, 1)
+                    if len(squares) > 1:
+                        new_square = squares[1]
+                        square_up = get_forward_squares (new_square, 1)
+                        square_down = get_backwards_squares (new_square, 1)
 
-                    for square in square_up + square_down:
-                        if get_piece_color(square, board) is None or get_piece_color(square, board) != self.color:
-                            moves.append(square)
+                        for square in square_up + square_down:
+                            if get_piece_color(square, board) is None or get_piece_color(square, board) != self.color:
+                                moves.append(square)
+
 
                 case 'right':
                     squares = get_right_squares (self.position, 2)
-                    new_square = squares[1]
-                    square_up = get_forward_squares (new_square, 1)
-                    square_down = get_backwards_squares (new_square, 1)
-                        
-                    for square in square_up + square_down:
-                        if get_piece_color(square, board) is None or get_piece_color(square, board) != self.color:
-                            moves.append(square)
+                    if len(squares) > 1:
+                        new_square = squares[1]
+                        square_up = get_forward_squares (new_square, 1)
+                        square_down = get_backwards_squares (new_square, 1)
+                    
+                        for square in square_up + square_down:
+                            if get_piece_color(square, board) is None or get_piece_color(square, board) != self.color:
+                                moves.append(square)
 
                 case 'up':
                     squares = get_forward_squares(self.position, 2)
-                    new_square = squares[1]
-                    square_right = get_right_squares(new_square, 1)
-                    square_left = get_left_squares(new_square, 1)
+                    if len(squares) > 1:
+                        new_square = squares[1]
+                        square_right = get_right_squares(new_square, 1)
+                        square_left = get_left_squares(new_square, 1)
 
-                    for square in square_right + square_left:
-                        if get_piece_color(square, board) is None or get_piece_color(square, board) != self.color:
-                            moves.append(square)
+                        for square in square_right + square_left:
+                            if get_piece_color(square, board) is None or get_piece_color(square, board) != self.color:
+                                moves.append(square)
 
                 case 'down':
                     squares = get_backwards_squares(self.position, 2)
-                    print (squares)
-                    new_square = squares[1]
-                    square_right = get_right_squares(new_square, 1)
-                    square_left = get_left_squares(new_square, 1)
+                    if len(squares) > 1:
+                        new_square = squares[1]
+                        square_right = get_right_squares(new_square, 1)
+                        square_left = get_left_squares(new_square, 1)
 
-                    for square in square_right + square_left:
-                        if get_piece_color(square, board) is None or get_piece_color(square, board) != self.color:
-                            moves.append(square)
+                        for square in square_right + square_left:
+                            if get_piece_color(square, board) is None or get_piece_color(square, board) != self.color:
+                                moves.append(square)
 
 
         return moves

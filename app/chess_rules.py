@@ -2,6 +2,8 @@ from .pieces.pawn import Pawn
 from .pieces.knight import Knight
 from .pieces.rook import Rook
 from .pieces.bishop import Bishop
+from .pieces.queen import Queen
+from .pieces.king import King
 from .utils import is_square_empty
 
 rows = ['1', '2', '3', '4', '5', '6', '7', '8']
@@ -37,6 +39,16 @@ def get_valid_turns (board_state, color, squareId):
             piece = Bishop (color, squareId)
             valid_bishop_turns = piece.get_valid_moves (board_state, color)
             valid_moves = valid_bishop_turns
+
+        elif piece_t == 'Q':
+            piece = Queen (color, squareId)
+            valid_queen_turns = piece.get_valid_moves (board_state, color)
+            valid_moves = valid_queen_turns
+
+        elif piece_t == 'K':
+            piece = King (color, squareId)
+            valid_king_moves = piece.get_valid_moves (board_state, color)
+            valid_moves = valid_queen_turns
         
     return valid_moves
             

@@ -1,5 +1,6 @@
 from .pieces.pawn import Pawn
 from .pieces.knight import Knight
+from .pieces.rook import Rook
 from .utils import is_square_empty
 
 rows = ['1', '2', '3', '4', '5', '6', '7', '8']
@@ -24,6 +25,12 @@ def get_valid_turns (board_state, color, squareId):
             valid_knight_turns = piece.get_valid_moves (board_state, color)
             print (valid_knight_turns)
             valid_moves = valid_knight_turns
+
+        elif piece_t == 'R':
+            print ('ROOK CLICKED WOOHOO')
+            piece = Rook (color, squareId)
+            valid_rook_turns = piece.get_valid_moves (board_state, color)
+            valid_moves = valid_rook_turns
         
     return valid_moves
             

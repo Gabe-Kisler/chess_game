@@ -1,10 +1,10 @@
 from app.pieces.piece import Piece
 from app.utils import get_forward_squares, is_square_empty, get_piece_color, get_left_squares, get_right_squares, get_backwards_squares
 
-moves = []
 
 class Knight(Piece):
     def get_valid_moves (self, board, color):
+        moves = []
     ## LOOP THROUGH
         ## check left 2 up/down
         ## check right 2 up/down

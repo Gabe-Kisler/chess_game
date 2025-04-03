@@ -32,9 +32,10 @@ def get_valid_turns_route ():
 
 @routes.route ('/update-board-state', methods=['POST'])
 def update_board_state ():
+    global board_state
     data = request.get_json()
     square_from = data.get('from')
     square_to = data.get('to')
 
-    new_board_state = update_board (square_from, square_to, board_state)
-    return jsonify(new_board_state)
+    board_state = update_board (square_from, square_to, board_state)
+    return jsonify(board_state)

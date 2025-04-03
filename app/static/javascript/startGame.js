@@ -5,6 +5,10 @@ startButton.addEventListener('click', startGame);
 let boardState = '';
 let pieceSelected = '';
 let squareId = '';
+let pieceListeners = {};
+let moveListeners = {};
+
+
 const pieceImages = {
     "wP": "/static/resources/white-pawn.svg",
     "bP": "/static/resources/black-pawn.svg",
@@ -32,28 +36,41 @@ function setupBoard (user_color) {
         });
 }
 
+let isBoardRendered = false;
+
 function render_board (boardState) {
     const rows = ['1', '2', '3', '4', '5', '6', '7', '8'];
     const columns = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+
+    if (isBoardRendered) {
+        removeValidMoveListeners(moveListeners);
+        removePieceListeners(pieceListeners);
+    }
 
     console.log ('render board called:', boardState);
     for (i = 0; i < 8; i++) {
         for (j = 0; j < 8; j++) {
             let currSquareId = rows[i] + columns[j];
 
+
             const piece = boardState[currSquareId];
             const squareElement = document.getElementById(currSquareId);
             const imageElement = document.getElementById(`${currSquareId}-img`);
 
-            console.log (piece);
+            console.log (pieceListeners);
 
-            if (imageElement) {
-                imageElement.addEventListener('click', function() {
+            if (imageElement && piece && !pieceListeners[currSquareId]) {
+                const handler = function () {
+                    removeHighlight();
                     pieceSelected = getPieceClicked (currSquareId, boardState);
+                    pieceListeners[currSquareId] = { element: imageElement, handler };
+
                     if (pieceSelected[0] === 'w')
-                    // TEST
-                    highlightValidMoves (currSquareId, 'white');
-                });
+                        highlightValidMoves (currSquareId, 'white');
+                }
+                imageElement.addEventListener('click', handler);
+                pieceListeners[currSquareId] = { element: imageElement, handler };
+  
             }
 
             if (piece && imageElement) {
@@ -67,6 +84,8 @@ function render_board (boardState) {
 
         }
     }
+
+    isBoardRendered = true;
 }
 
 function getPieceClicked (squareId, boardState) {
@@ -93,6 +112,7 @@ function removeHighlight () {
     highlightedSquare.forEach (square => {
         square.classList.remove('valid-move');
     });
+
 }
 
 
@@ -120,14 +140,18 @@ function highlightValidMoves (squareSelected, turn_color) {
 
 function takeTurn (validMoves, turn_color, currSquare) {
 
+
     validMoves.forEach (move => {
         let moveSquare = document.getElementById (move);
-        moveSquare.addEventListener ('click', function handleMove() {
+        const moveHandler = function () {
             movePiece (currSquare, move);
-            
-        });
+            removeValidMoveListeners(moveListeners);
+        }
+            moveSquare.addEventListener ("click", moveHandler);
+            moveListeners[move] = { element: moveSquare, handler: moveHandler };
     });
 }
+
 
 function movePiece (currSquare, move) {
     console.log ("moving piece from", currSquare, "to", move);
@@ -147,6 +171,7 @@ function movePiece (currSquare, move) {
         movePieceImg.style.display = "block";
     }
 
+    removeHighlight ();
     fetch ('/update-board-state', {
         method: 'POST',
         body: JSON.stringify ({ from: currSquare, to: move }),
@@ -156,11 +181,32 @@ function movePiece (currSquare, move) {
     })
     .then (response => response.json())
     .then (updatedBoardState => {
-        removeHighlight();
         render_board(updatedBoardState);
     });
 
 }
 
+ 
+function removePieceListeners (pieceListeners) {
+    for (const square in pieceListeners) {
+        const { element, handler } = pieceListeners[square];
+        if (element && handler) {
+            console.log ('remove valid piece listener', element);
+            element.removeEventListener("click", handler);
+            delete pieceListeners[square];
+        }
+    }
 
-        
+}
+
+function removeValidMoveListeners (moveListeners) {
+    for (const move in moveListeners) {
+        const { element, handler } = moveListeners[move];
+        if (element && handler) {
+            console.log ('removing valid move listener', element);
+            element.removeEventListener("click", handler);
+            delete moveListeners[move];
+        }
+    }
+    
+}

@@ -5,24 +5,37 @@ moves = []
 
 class Pawn(Piece):
     def get_valid_moves (self, board, color):
+     ## LOOP THROUGH
+            ## if first turn, check up two, both diagonals
+            ## if not up one, both diagonals
 
+
+            ## diagonals // if not empty, and piece is opponent
         moves = []
 
+
         if self.is_first_turn ():
-            print ('pawn first turn')
             forward_moves = get_forward_squares(self.position, 2)
-            print (forward_moves)
-            if not (is_square_empty (forward_moves[0], board)) and not (is_square_empty (forward_moves[1], board)):
-                moves.extend(forward_moves)
+            if len(forward_moves) > 1:
+                if is_square_empty (forward_moves[0], board) and is_square_empty (forward_moves[1], board):
+                    moves.extend(forward_moves)
         else:
             forward_moves = get_forward_squares(self.position, 1)
-            if not (is_square_empty (forward_moves[0], board)):
-                moves.append(forward_moves[0])
+            if len(forward_moves) > 0:
+                if is_square_empty (forward_moves[0], board):
+                    moves.append(forward_moves[0])
+
         diagonal_moves = get_diagonal_squares_forward (self.position, 1)
-        if is_square_empty(diagonal_moves[0], board) and get_piece_color(diagonal_moves[0], board) != color or get_piece_color(diagonal_moves[0], board) != None:
-            moves.append(diagonal_moves[0])
-        if is_square_empty(diagonal_moves[1], board):
-            moves.append(diagonal_moves[1])
+        print ('pawn move,', color)
+
+        if len(diagonal_moves) > 0:
+            if not is_square_empty(diagonal_moves[0], board):
+                if get_piece_color(diagonal_moves[0], board) != self.color and get_piece_color(diagonal_moves[0], board) != None:
+                    moves.append(diagonal_moves[0])
+        if len(diagonal_moves) > 1:
+            if not is_square_empty(diagonal_moves[1], board):
+                if get_piece_color(diagonal_moves[1], board) != self.color and get_piece_color(diagonal_moves[0], board) != None:
+                    moves.append(diagonal_moves[1])
 
         return moves
             

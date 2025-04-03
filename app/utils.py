@@ -44,7 +44,7 @@ def get_diagonal_squares_forward (square_id, num):
     for i in range (1, num + 1):
         new_row = row + i
         new_column_index = column_index + i
-        if 1 <= new_row <= 8 and 1 <= columns.index(column) <= 8:
+        if 1 <= new_row <= 8 and 0 <= new_column_index <= 7:
             new_column = columns[new_column_index]
             square = f"{new_row}{new_column}"
             forward_diagonal_squares.append (square)
@@ -126,7 +126,9 @@ def get_left_squares (square_id, num):
     return left_squares
 
 def is_square_empty (square_id, board_state):
-    return board_state.get(square_id) == "None"
+    if square_id not in board_state:
+        return True
+    return board_state.get(square_id) is None
 
 def get_piece_color (square_id, board_state):
     print ('getting piece color', square_id)

@@ -28,6 +28,9 @@ class Rook(Piece):
 
                     moves.append(square)
 
+                    if not is_square_empty (square, board) and get_piece_color (square, board) != self.color:
+                        break
+
             if dir == 'right':
                 squares = get_right_squares (self.position, 7)
                 for square in squares:
@@ -37,6 +40,9 @@ class Rook(Piece):
                         break
 
                     moves.append(square)
+
+                    if not is_square_empty (square, board) and get_piece_color (square, board) != self.color:
+                        break
 
             if dir == 'up':
                 squares = get_forward_squares (self.position, 7)
@@ -48,6 +54,9 @@ class Rook(Piece):
 
                     moves.append(square)
 
+                    if not is_square_empty (square, board) and get_piece_color (square, board) != self.color:
+                        break
+
             if dir == 'down':
                 squares = get_backwards_squares (self.position, 7)
                 for square in squares:
@@ -57,6 +66,9 @@ class Rook(Piece):
                         break
 
                     moves.append(square)
+
+                    if not is_square_empty (square, board) and get_piece_color (square, board) != self.color:
+                        break
 
 
         return moves

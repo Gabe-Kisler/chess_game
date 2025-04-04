@@ -11,9 +11,9 @@ class Bishop(Piece):
         ## check diagonal up 7, if row is oob or column oob, break, if piece is not opponents, break
         ## check diagonal down 7, see above
         
-        forward_diagonal_squares = get_diagonal_squares_forward (self.position, 7)
-        for square in forward_diagonal_squares:
-            if int(square[0]) < 1 or int(square[0]) > 8:
+        forward_right_diagonal_squares, forward_left_diagonal_squares = get_diagonal_squares_forward (self.position, 7)
+        for square in forward_right_diagonal_squares:
+            if int(square[0]) > 8:
                 continue
             if square[1] not in columns:
                 continue
@@ -22,9 +22,11 @@ class Bishop(Piece):
 
             moves.append(square)
 
-        backward_diagonal_squares = get_diagonal_squares_backward (self.position, 7)
-        for square in backward_diagonal_squares:
-            if int(square[0]) < 1 or int(square[0]) > 8:
+            if not is_square_empty (square, board) and get_piece_color (square, board) != self.color:
+                        break
+
+        for square in forward_left_diagonal_squares:
+            if int(square[0]) < 1:
                 continue
             if square[1] not in columns:
                 continue
@@ -32,5 +34,35 @@ class Bishop(Piece):
                 break
 
             moves.append(square)
+
+            if not is_square_empty (square, board) and get_piece_color (square, board) != self.color:
+                        break
+
+        backward_right_diagonal_squares, backwards_left_diagonal_squares = get_diagonal_squares_backward (self.position, 7)
+        for square in backward_right_diagonal_squares:
+            if int(square[0]) < 1:
+                continue
+            if square[1] not in columns:
+                continue
+            if not is_square_empty (square, board) and get_piece_color (square, board) == self.color:
+                continue
+
+            moves.append(square)
+
+            if not is_square_empty (square, board) and get_piece_color (square, board) != self.color:
+                        break
+
+        for square in backwards_left_diagonal_squares:
+            if int(square[0]) < 1:
+                continue
+            if square[1] not in columns:
+                continue
+            if not is_square_empty (square, board) and get_piece_color (square, board) == self.color:
+                continue
+
+            moves.append(square)
+
+            if not is_square_empty (square, board) and get_piece_color (square, board) != self.color:
+                        break
 
         return moves

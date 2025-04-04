@@ -16,60 +16,87 @@ class King(Piece):
         dir_to_check = ['left', 'right', 'up', 'down', 'diagonal_up', 'diagonal_down']
         for dir in dir_to_check:
             if dir == 'left':
-                square = get_left_squares(self.position, 1)
-                if int(square[0]) < 1:
-                    break
-                if not is_square_empty(square, board) and get_piece_color(square, board) == self.color:
-                    break
+                squares = get_left_squares(self.position, 1)
+                for square in squares:
+                    if square[1] not in columns:
+                        break
+                    if not is_square_empty(square, board) and get_piece_color(square, board) == self.color:
+                        break
 
                 moves.append(square)
 
             if dir == 'right':
-                square = get_right_squares(self.position, 1)
-                if int(square[0]) < 1:
-                    break
-                if not is_square_empty(square, board) and get_piece_color(square, board) == self.color:
-                    break
+                squares = get_right_squares(self.position, 1)
+                for square in squares:
+                    if square[1] not in columns:
+                        break
+                    if not is_square_empty(square, board) and get_piece_color(square, board) == self.color:
+                        break
 
                     moves.append(square)
 
             if dir == 'up':
-                square = get_forward_squares (self.position, 1)
-                if int(square[0]) < 1:
-                        break
-                if get_piece_color (square, board) == self.color:
-                    break
+                squares = get_forward_squares (self.position, 1)
+                for square in squares:
+                    if (square):
+                        if int(square[0]) < 1:
+                            break
+                        if get_piece_color (square, board) == self.color:
+                            break
 
                 moves.append(square)
 
             if dir == 'down':
-                square = get_backwards_squares (self.position, 1)
-                if int(square[0]) < 1:
-                    break
-                if get_piece_color (square, board) == self.color:
-                    break
+                squares = get_backwards_squares (self.position, 1)
+                for square in squares:
+                    if int(square[0]) < 1:
+                        break
+                    if get_piece_color (square, board) == self.color:
+                        break
 
                 moves.append(square)
 
             if dir == 'diagonal_up':
-                square = get_diagonal_squares_forward (self.position, 1)
-                if int(square[0]) < 1 or int(square[0]) > 8:
-                    continue
-                if square[1] not in columns:
-                    continue
-                if not is_square_empty (square, board) and get_piece_color (square, board) == self.color:
-                    break
+                diagonal_right, diagonal_left = get_diagonal_squares_forward (self.position, 1)
+                for right in diagonal_right:
+                    if int(right[0]) > 8:
+                        break
+                    if right[1] not in columns:
+                        break
+                    if not is_square_empty (square, board) and get_piece_color (square, board) == self.color:
+                        break
+
+                moves.append(square)
+
+                for left in diagonal_left:
+                    if int(left[0]) < 1:
+                        break
+                    if left[1] not in columns:
+                        break
+                    if not is_square_empty (square, board) and get_piece_color (square, board) == self.color:
+                        break
 
                 moves.append(square)
 
             if dir == 'diagonal_down':
-                square = get_diagonal_squares_backward (self.position, 1)
-                if int(square[0]) < 1 or int(square[0]) > 8:
-                    continue
-                if square[1] not in columns:
-                    continue
-                if not is_square_empty (square, board) and get_piece_color (square, board) == self.color:
-                    break
+                diagonal_right_down, diagonal_left_down = get_diagonal_squares_backward (self.position, 1)
+                for right in diagonal_right_down:
+                    if int(right[0]) > 8:
+                        break
+                    if right[1] not in columns:
+                        break
+                    if not is_square_empty (square, board) and get_piece_color (square, board) == self.color:
+                        break
+
+                moves.append(square)
+
+                for left in diagonal_left_down:
+                    if int(left[0]) < 1:
+                        break
+                    if left[1] not in columns:
+                        break
+                    if not is_square_empty (square, board) and get_piece_color (square, board) == self.color:
+                        break
 
                 moves.append(square)
 

@@ -48,7 +48,7 @@ def get_valid_turns (board_state, color, squareId):
         elif piece_t == 'K':
             piece = King (color, squareId)
             valid_king_moves = piece.get_valid_moves (board_state, color)
-            valid_moves = valid_queen_turns
+            valid_moves = valid_king_moves
         
     return valid_moves
             

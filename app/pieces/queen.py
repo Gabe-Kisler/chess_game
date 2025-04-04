@@ -26,40 +26,52 @@ class Queen(Piece):
 
                     moves.append(square)
 
+                    if not is_square_empty (square, board) and get_piece_color (square, board) != self.color:
+                        break
+
             if dir == 'right':
                 squares = get_right_squares(self.position, 7)
                 for square in squares:
-                    if int(square[0]) < 1:
+                    if int(square[0]) > 8:
                         break
                     if not is_square_empty(square, board) and get_piece_color(square, board) == self.color:
                         break
 
                     moves.append(square)
 
+                    if not is_square_empty (square, board) and get_piece_color (square, board) != self.color:
+                        break
+
             if dir == 'up':
                 squares = get_forward_squares (self.position, 7)
                 for square in squares:
-                    if int(square[0]) < 1:
+                    if square[1] not in columns:
                         break
                     if get_piece_color (square, board) == self.color:
                         break
 
                     moves.append(square)
+
+                    if not is_square_empty (square, board) and get_piece_color (square, board) != self.color:
+                        break
 
             if dir == 'down':
-                quares = get_backwards_squares (self.position, 7)
+                squares = get_backwards_squares (self.position, 7)
                 for square in squares:
-                    if int(square[0]) < 1:
+                    if square[1] not in columns:
                         break
                     if get_piece_color (square, board) == self.color:
                         break
 
                     moves.append(square)
 
+                    if not is_square_empty (square, board) and get_piece_color (square, board) != self.color:
+                        break
+
             if dir == 'diagonal_up':
-                forward_diagonal_squares = get_diagonal_squares_forward (self.position, 7)
-                for square in forward_diagonal_squares:
-                    if int(square[0]) < 1 or int(square[0]) > 8:
+                forward_right_diagonal_squares, forward_left_diagonal_squares = get_diagonal_squares_forward (self.position, 7)
+                for square in forward_right_diagonal_squares:
+                    if int(square[0]) > 8:
                         continue
                     if square[1] not in columns:
                         continue
@@ -67,11 +79,27 @@ class Queen(Piece):
                         break
 
                     moves.append(square)
+
+                    if not is_square_empty (square, board) and get_piece_color (square, board) != self.color:
+                        break
+
+                for square in forward_left_diagonal_squares:
+                    if int(square[0]) > 8:
+                        continue
+                    if square[1] not in columns:
+                        continue
+                    if not is_square_empty (square, board) and get_piece_color (square, board) == self.color:
+                        break
+
+                    moves.append(square)
+
+                    if not is_square_empty (square, board) and get_piece_color (square, board) != self.color:
+                        break
 
             if dir == 'diagonal_down':
-                backward_diagonal_squares = get_diagonal_squares_backward (self.position, 7)
-                for square in backward_diagonal_squares:
-                    if int(square[0]) < 1 or int(square[0]) > 8:
+                backward_right_diagonal_squares, backward_left_diagonal_squares = get_diagonal_squares_backward (self.position, 7)
+                for square in backward_right_diagonal_squares:
+                    if int(square[0]) > 8:
                         continue
                     if square[1] not in columns:
                         continue
@@ -79,6 +107,22 @@ class Queen(Piece):
                         break
 
                     moves.append(square)
+
+                    if not is_square_empty (square, board) and get_piece_color (square, board) != self.color:
+                        break
+
+                for square in backward_left_diagonal_squares:
+                    if int(square[0]) < 1:
+                        continue
+                    if square[1] not in columns:
+                        continue
+                    if not is_square_empty (square, board) and get_piece_color (square, board) == self.color:
+                        break
+
+                    moves.append(square)
+
+                    if not is_square_empty (square, board) and get_piece_color (square, board) != self.color:
+                        break
 
 
         return moves

@@ -1,0 +1,23 @@
+#right-of-board {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 22%;
+    gap: 5vh;
+}
+
+.player-card {
+    width: 80%;
+    height: 15vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary);
+    border: 4px var(--border-color) solid;
+    border-radius: 5px;
+    gap: 2vh;
+}
+

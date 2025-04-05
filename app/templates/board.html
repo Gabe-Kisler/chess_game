@@ -5,17 +5,89 @@
     <title>chess</title>
     <meta charset="UTF-8">
     <script src="{{ url_for('static', filename='javascript/startGame.js')}}" defer></script>
+    <script src="{{ url_for('static', filename='javascript/buttonListeners.js')}}" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static',  filename='css/themes.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',  filename='css/board.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',  filename='css/leftOfBoard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',  filename='css/rightOfBoard.css') }}">
 </head>
 
 <body>
     <div id="left-of-board">
         <h1 id="title">chess</h1>
         <button type="button" class="game-button" id="start-game">start game</button>
-        <button type="button" class="game-button" id="game-settings">game settings</button>
-        <button type="button" class="game-button" id="color-theme">color theme</button>
-        <button type="button" class="game-button" id="account">account</button>
+        <div id="gameOptions">
+            <h3>game options</h3>
+            <div class="buttonswName">
+            <h4>time</h4>
+            <div class="optionButtonContainer">
+                <h5>2:30:</h5>
+                <button class="optionsButton time" id="twoThirtyButton"></button>
+                <h5>5:00:</h5>
+                <button class="optionsButton time" id="fiveButton"></button>
+                <h5>10:00:</h5>
+                <button class="optionsButton time" id="tenButton"></button>
+            </div>
+            </div>
+            <div class="buttonswName">
+            <h4>difficulty</h4>
+            <div class="optionButtonContainer">
+                <h5>easy:</h5>
+                <button class="optionsButton difficulty" id="easyButton"></button>
+                <h5>med:</h5>
+                <button class="optionsButton difficulty" id="mediumButton"></button>
+                <h5>hard:</h5>
+                <button class="optionsButton difficulty" id="hardButton"></button>
+            </div>
+            </div>
+            <div class="buttonswName">
+            <h4>color</h4>
+            <div class="optionButtonContainer">
+                <h5>white:</h5>
+                <button class="optionsButton color" id="whiteButton"></button>
+                <h5>black:</h5>
+                <button class="optionsButton color" id="blackButton"></button>
+            </div>
+            </div>
+        </div>
+        <button type="button" class="game-button" id="accountButton">account</button>
+        <button type="button" class="game-button" id="themesButton">theme</button>
     </div>
+    <div id="themesPopout" style="display: none;">
+        <div id="themesPopoutOverlay"></div>
+        <div id="themesPopoutContent">
+                <button class="multi-color-button" id="default">
+                    <span style="background: #304b2e"></span>
+                    <span style="background: #4a7446"></span>
+                    <span style="background: #a19877"></span>
+              </button>
+              <button class="multi-color-button" id="black-and-white">
+                    <span style="background:rgb(146, 146, 146);"></span>
+                    <span style="background:rgb(255, 255, 255);"></span>
+                    <span style="background:rgb(63, 63, 63);"></span>
+              </button>
+              <button class="multi-color-button" id="lavendar-brown">
+                    <span style="background:rgb(125, 128, 139);"></span>
+                    <span style="background:rgb(69, 73, 109);"></span>
+                    <span style="background:rgb(121, 93, 77);"></span>
+              </button>
+              <button class="multi-color-button" id="pinks">
+                    <span style="background:rgb(221, 164, 221);"></span>
+                    <span style="background:rgb(240, 111, 245);"></span>
+                    <span style="background:rgb(109, 64, 103);"></span>
+              </button>
+              <button class="multi-color-button" id="bright">
+                    <span style="background:rgb(102, 28, 98);"></span>
+                    <span style="background:rgb(64, 106, 196);"></span>
+                    <span style="background:rgb(196, 199, 52);"></span>
+              </button>
+              <button class="multi-color-button" id="space">
+                    <span style="background:rgb(32, 38, 83);"></span>
+                    <span style="background:rgb(206, 147, 214);"></span>
+                    <span style="background:rgb(217, 221, 180);"></span>
+              </button>
+        </div>
+    </div>  
     <div id="board">
         <div class="row" id="8">
             <div class="box" id="8a"><img id="8a-img"></div>
@@ -99,17 +171,17 @@
         </div>    
     </div>        
     <div id="right-of-board">
-        <div class="player-card" id="player-1">
-            <h3 id="player-1-username">player 1</h3>
-            <h4 class="time" id="player-1-time">5:00</h4>
-        </div>    
-        <div id="versus">
-            <h3>---- vs ----</h3>
-        </div>
-        <div class="player-card" id="player-2">
-            <h3 id="player-2-username">player 2</h3>
-            <h4 class="time" id="player-2-time">5:00</h4>
-        </div>    
+            <div class="player-card" id="player-1">
+                <h3 id="player-1-username">player 1</h3>
+                <h4 class="time" id="player-1-time">5:00</h4>
+            </div>    
+            <div id="versus">
+                <h3>---- vs ----</h3>
+            </div>
+            <div class="player-card" id="player-2">
+                <h3 id="player-2-username">player 2</h3>
+                <h4 class="time" id="player-2-time">5:00</h4>
+            </div>
     </div>
 </body>  
 

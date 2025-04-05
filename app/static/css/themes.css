@@ -1,0 +1,123 @@
+:root {
+    --background-color: #304b2e;
+    --box-light: #a19877;
+    --box-dark: #524b36;
+    --text-color: #a19877;
+    --secondary: #4a7446;
+    --hover: #4a7446;
+    --button-color: #615740;
+    --border-color: #a19877;
+}
+
+.multi-color-button {
+    display: flex;
+    padding: 0;
+    width: 70%;
+    height: 6vh;
+    border: none;
+    overflow: hidden;
+    cursor: pointer;
+    border: white 4px solid;
+    margin-bottom: 5%;
+  }
+  
+  .multi-color-button span {
+    flex: 1;
+  }
+
+  #themesPopout {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index:999999; 
+    gap: 5%;
+    width: 100%;
+    height: 100%;
+  }
+
+  #themesPopoutOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(76, 77, 71, 0.3); 
+    z-index: 1; 
+}
+  #themesPopoutContent {
+    background-color: var(--secondary);
+    position: relative; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 10px var(--background-color) solid;
+    border-radius: 10px;
+    width: 20%;
+    height: 40vh;
+    z-index: 2;
+    padding: 20px;
+}
+
+
+/* themes */
+
+body.black-and-white-theme {
+  --background-color: #7e7e7e;
+  --box-light: #c7c7c7;
+  --box-dark: #3a3a3a;
+  --text-color: #202020;
+  --secondary: #686968;
+  --hover: #3a3a3a;
+  --button-color: #686868;
+  --border-color: #42413f;
+}
+
+body.lavendar-brown-theme {
+  --background-color: #685949;
+  --box-light: #a985ad;
+  --box-dark: #615174;
+  --text-color: #cccccc;
+  --secondary: #888267;
+  --hover: #494747;
+  --button-color: #7a6a55;
+  --border-color: #6c5d74;
+}
+
+body.pinks-theme {
+  --background-color: #5c445a;
+  --box-light: #ca8fd1;
+  --box-dark: #7a4381;
+  --text-color: #382c41;
+  --secondary: #775272;
+  --hover: #d6aadb;
+  --button-color: #614b61;
+  --border-color: #b9a3c4;
+}
+
+body.bright-theme {
+  --background-color: #391463;
+  --box-light: #0aa8e7;
+  --box-dark: #3413ec;
+  --text-color: #68e713;
+  --secondary: #2566df;
+  --hover: #8a2d94;
+  --button-color: #aa4daa;
+  --border-color: #3adf19;
+}
+
+body.space-theme {
+  --background-color: #1f203f;
+  --box-light: #9ca3a2;
+  --box-dark: #2a2836;
+  --text-color: #3d8799;
+  --secondary: #4d52a0;
+  --hover: #8a2d94;
+  --button-color: #201f74;
+  --border-color: #ccce5d;
+}
+

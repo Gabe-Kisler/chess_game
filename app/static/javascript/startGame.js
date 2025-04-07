@@ -1,6 +1,6 @@
 const startButton = document.getElementById ('start-game')
 
-startButton.addEventListener('click', startGame);
+
 
 let boardState = '';
 let pieceSelected = '';
@@ -24,9 +24,9 @@ const pieceImages = {
     "bK": "/static/resources/black-king.svg"
 };
 
-function startGame () {
+window.addEventListener ('load', function () {
     setupBoard ('white');
-}
+});
 
 function setupBoard (user_color) {
     fetch(`/setup_game/${user_color}`)

@@ -111,13 +111,13 @@ body.bright-theme {
 }
 
 body.space-theme {
-  --background-color: #1f203f;
-  --box-light: #9ca3a2;
-  --box-dark: #2a2836;
-  --text-color: #3d8799;
-  --secondary: #4d52a0;
-  --hover: #8a2d94;
-  --button-color: #201f74;
-  --border-color: #ccce5d;
+  --background-color: #272d42;
+  --box-light: #afafaf;
+  --box-dark: #494949;
+  --text-color: #aaaaaa;
+  --secondary: #6a6b70;
+  --hover: #1a1b4e;
+  --button-color: #485979;
+  --border-color: #000000;
 }
 

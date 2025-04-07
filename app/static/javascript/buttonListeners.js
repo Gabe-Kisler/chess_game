@@ -20,14 +20,15 @@ const tenButton = document.getElementById('tenButton');
 const whiteButton = document.getElementById('whiteButton');
 const blackButton = document.getElementById('blackButton');
 
-window.onload = function () {
+window.addEventListener('load', function () {
     mediumButton.classList.add('selected');
     fiveButton.classList.add('selected');
     whiteButton.classList.add('selected');
     addTimeButtonListeners();
     addDifficultyButtonListeners();
     addColorButtonListeners();
-}
+    setupBoard ('white');
+});
 
 themesButton.onclick = function () {
     themesPopout.style.display = 'flex';

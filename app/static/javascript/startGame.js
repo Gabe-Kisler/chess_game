@@ -1,5 +1,3 @@
-const startButton = document.getElementById ('start-game')
-
 
 
 let boardState = '';
@@ -7,6 +5,7 @@ let pieceSelected = '';
 let squareId = '';
 let pieceListeners = {};
 let moveListeners = {};
+let isBoardRendered = false;
 
 
 const pieceImages = {
@@ -26,6 +25,8 @@ const pieceImages = {
 
 window.addEventListener ('load', function () {
     setupBoard ('white');
+    setupDefaults();
+    setupButtonListeners();
 });
 
 function setupBoard (user_color) {
@@ -36,7 +37,11 @@ function setupBoard (user_color) {
         });
 }
 
-let isBoardRendered = false;
+function startGame (user_color, time, difficulty) {
+    console.log ('start game called');
+    startTimer (time);
+    takeTurn (user_color);
+}
 
 function render_board (boardState) {
     const rows = ['1', '2', '3', '4', '5', '6', '7', '8'];

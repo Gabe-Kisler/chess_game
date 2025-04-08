@@ -5,11 +5,12 @@ from .pieces.bishop import Bishop
 from .pieces.queen import Queen
 from .pieces.king import King
 from .utils import is_square_empty
+import random
 
 rows = ['1', '2', '3', '4', '5', '6', '7', '8']
 columns = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
 
-def get_valid_turns (board_state, color, squareId):
+def get_valid_turns (board_state, color, squareId, turn):
     valid_moves = []
 
     piece_c = board_state.get(squareId, None)
@@ -19,7 +20,7 @@ def get_valid_turns (board_state, color, squareId):
         piece_t = piece_c[1]
         if piece_t == 'P':
             piece = Pawn (color, squareId)
-            valid_pawn_moves = piece.get_valid_moves (board_state, color)
+            valid_pawn_moves = piece.get_valid_moves (board_state, turn)
             valid_moves = valid_pawn_moves
 
         elif piece_t == 'N':
@@ -52,6 +53,21 @@ def get_valid_turns (board_state, color, squareId):
         
     return valid_moves
             
+def get_computer_move (board_state, color):
+    valid_moves = []
+    for column in columns:
+        for row in rows:
+            square = column + row
+            piece_c = board_state.get(square)
+            if piece_c:
+                piece_color = piece_c[0]
+                if piece_color == color:
+
+                    valid_moves.extend(get_valid_turns(board_state, color, square, 'computer'))
+    if valid_moves:
+        random_move = random.choice(valid_moves)
+        return [random_move]
+    return []
 
 
             

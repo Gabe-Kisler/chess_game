@@ -1,4 +1,5 @@
-
+import { setupBoard } from "./boardSetup.js";
+import { startGame } from "./startGame.js";
 
 const startGameButton = document.getElementById ('start-game');
 const accountButton = document.getElementById ('accountButton');
@@ -23,16 +24,26 @@ const tenButton = document.getElementById('tenButton');
 const whiteButton = document.getElementById('whiteButton');
 const blackButton = document.getElementById('blackButton');
 
+const p1Timer = document.getElementById('player-1-time');
+const p2Timer = document.getElementById('player-2-time');
+
+let userColor = '';
+let time = '';
+let difficulty = '';
+
 
 /*sets up default indicators on five min, medium, and white buttons*/
-function setupDefaults () {
+export function setupDefaults () {
     mediumButton.classList.add('selected');
+    window.difficulty = 'medium';
     fiveButton.classList.add('selected');
+    window.time = 'five';
     whiteButton.classList.add('selected');
+    window.userColor = 'white';
 }
 
 /*sets up on screen button listeners*/
-function setupButtonListeners () {
+export function setupButtonListeners () {
     addTimeButtonListeners();
     addDifficultyButtonListeners();
     addColorButtonListeners();
@@ -47,7 +58,8 @@ function addGameButtonListeners () {
             const buttonId = event.currentTarget.id;
             switch (buttonId) {
                 case ('start-game'):
-                    startGame();
+                    console.log ('start game hit');
+                    startGame(window.userColor, window.time, window.difficulty);
                     break;
                 case ('accountButton'):
                     /* handle later */
@@ -110,6 +122,22 @@ function addTimeButtonListeners() {
         button.addEventListener('click', function () {
             clearTimeButtons();
             button.classList.add('selected');
+            if (button.id == 'twoThirtyButton') {
+                p1Timer.textContent = '2:30';
+                p2Timer.textContent = '2:30';
+                window.time = '2:30';
+            }
+            else if (button.id == 'fiveButton') {
+                p1Timer.textContent = '5:00';
+                p2Timer.textContent = '5:00';
+                window.time = '5:00';
+            }
+            else if (button.id == 'tenButton') {
+                p1Timer.textContent = '10:00';
+                p2Timer.textContent = '10:00';
+                window.time = '10:00';
+            }
+
         });
     });
 }
@@ -120,6 +148,15 @@ function addDifficultyButtonListeners() {
         button.addEventListener('click', function () {
             clearDifficultyButtons();
             button.classList.add('selected');
+            if (button.id == 'hardButton') {
+                window.difficulty = 'hard';
+            }
+            else if (button.id == 'easyButton') {
+                window.difficulty = 'easy';
+            }
+            else if (button.id == 'mediumButton') {
+                window.difficulty = 'medium';
+            }
         });
     });
 }
@@ -130,6 +167,14 @@ function addColorButtonListeners() {
         button.addEventListener('click', function () {
             clearColorButtons();
             button.classList.add('selected');
+            if (button.id == 'whiteButton') {
+                setupBoard ('white');
+                window.userColor = 'white';
+            }
+            if (button.id == 'blackButton') {
+                setupBoard ('black');
+                window.userColor = 'black';
+            }
         });
     });
 }

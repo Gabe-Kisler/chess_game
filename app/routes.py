@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, jsonify, request
 from .board import setup_board, update_board
-from .chess_rules import get_valid_turns
+from .chess_rules import get_valid_turns, get_computer_move
 
 
 board_state = {}
@@ -25,8 +25,13 @@ def get_valid_turns_route ():
     piece = data.get('piece')
     color = data.get('color')
     square = data.get('square')
+    turn = data.get('turn')
     
-    valid_turns = get_valid_turns (board_state, color, square)
+    if turn == 'user':
+        valid_turns = get_valid_turns (board_state, color, square, turn)
+    elif turn == 'computer':
+        print ('computer turn hit')
+        valid_turns = get_computer_move (board_state, color)
 
     return jsonify(valid_turns)
 

@@ -4,8 +4,13 @@
 <head>
     <title>chess</title>
     <meta charset="UTF-8">
-    <script src="{{ url_for('static', filename='javascript/startGame.js')}}" defer></script>
-    <script src="{{ url_for('static', filename='javascript/buttonListeners.js')}}" defer></script>
+    <script type="module" src="{{ url_for('static', filename='javascript/startGame.js')}}" defer></script>
+    <script type="module" src="{{ url_for('static', filename='javascript/buttonListeners.js')}}" defer></script>
+    <script type="module" src="{{ url_for('static', filename='javascript/boardSetup.js')}}" defer></script>
+    <script type="module" src="{{ url_for('static', filename='javascript/renderBoard.js')}}" defer></script>
+    <script type="module" src="{{ url_for('static', filename='javascript/squareHighlight.js')}}" defer></script>
+    <script type="module" src="{{ url_for('static', filename='javascript/turn.js')}}" defer></script>
+    <script type="module" src="{{ url_for('static', filename='javascript/getMoves.js')}}" defer></script>
     <link rel="stylesheet" href="{{ url_for('static',  filename='css/themes.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',  filename='css/board.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',  filename='css/leftOfBoard.css') }}">
@@ -21,32 +26,24 @@
             <div class="buttonswName">
             <h4>time</h4>
             <div class="optionButtonContainer">
-                <h5>2:30:</h5>
-                <button class="optionsButton time" id="twoThirtyButton"></button>
-                <h5>5:00:</h5>
-                <button class="optionsButton time" id="fiveButton"></button>
-                <h5>10:00:</h5>
-                <button class="optionsButton time" id="tenButton"></button>
+                <button class="optionsButton time" id="twoThirtyButton">2:30</button>
+                <button class="optionsButton time" id="fiveButton">5:00</button>
+                <button class="optionsButton time" id="tenButton">10:00</button>
             </div>
             </div>
             <div class="buttonswName">
             <h4>difficulty</h4>
             <div class="optionButtonContainer">
-                <h5>easy:</h5>
-                <button class="optionsButton difficulty" id="easyButton"></button>
-                <h5>med:</h5>
-                <button class="optionsButton difficulty" id="mediumButton"></button>
-                <h5>hard:</h5>
-                <button class="optionsButton difficulty" id="hardButton"></button>
+                <button class="optionsButton difficulty" id="easyButton">easy</button>
+                <button class="optionsButton difficulty" id="mediumButton">med</button>
+                <button class="optionsButton difficulty" id="hardButton">hard</button>
             </div>
             </div>
             <div class="buttonswName">
             <h4>color</h4>
             <div class="optionButtonContainer">
-                <h5>white:</h5>
-                <button class="optionsButton color" id="whiteButton"></button>
-                <h5>black:</h5>
-                <button class="optionsButton color" id="blackButton"></button>
+                <button class="optionsButton color" id="whiteButton">white</button>
+                <button class="optionsButton color" id="blackButton">black</button>
             </div>
             </div>
         </div>
@@ -171,16 +168,16 @@
         </div>    
     </div>        
     <div id="right-of-board">
-            <div class="player-card" id="player-1">
-                <h3 id="player-1-username">player 1</h3>
-                <h4 class="time" id="player-1-time">5:00</h4>
-            </div>    
-            <div id="versus">
-                <h3>---- vs ----</h3>
-            </div>
             <div class="player-card" id="player-2">
                 <h3 id="player-2-username">player 2</h3>
                 <h4 class="time" id="player-2-time">5:00</h4>
+            </div>   
+            <div id="versus">
+                <h3>---- vs ----</h3>
+            </div>
+            <div class="player-card" id="player-1">
+                <h3 id="player-1-username">player 1</h3>
+                <h4 class="time" id="player-1-time">5:00</h4>
             </div>
     </div>
 </body>  

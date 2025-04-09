@@ -40,6 +40,12 @@ export function setupDefaults () {
     window.time = 'five';
     whiteButton.classList.add('selected');
     window.userColor = 'white';
+    if (window.userColor == 'white') {
+        window.turn = 'user';
+    }
+    else if (window.userColor == 'black') {
+        window.turn = 'computer';
+    }
 }
 
 /*sets up on screen button listeners*/

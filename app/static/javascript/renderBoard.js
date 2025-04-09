@@ -22,7 +22,7 @@ export function render_board(boardState) {
     }
 
     console.log('render board called:', boardState);
-    console.log ('called with color, turn', window.color, window.turn);
+    console.log ('called with color, turn', window.userColor, window.turn);
 
     renderSquares(boardState, rows, columns);
 
@@ -31,9 +31,6 @@ export function render_board(boardState) {
 }
 
 function renderSquares(boardState, rows, columns) {
-    if (window.turn === 'computer') {
-        getComputerMove (window.userColor)
-    }
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
             let currSquareId = rows[i] + columns[j];

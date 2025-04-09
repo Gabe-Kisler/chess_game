@@ -54,20 +54,33 @@ def get_valid_turns (board_state, color, squareId, turn):
     return valid_moves
             
 def get_computer_move (board_state, color):
+    print ('get_computer_move entered with', board_state)
+    if color == 'black':
+        color_char = 'b'
+    elif color == 'white':
+        color_char = 'w'
+
     valid_moves = []
+
     for column in columns:
         for row in rows:
-            square = column + row
-            piece_c = board_state.get(square)
+            square = row + column
+            print ('in get valid moves loop, square, color', square, color)
+            piece_c = board_state.get(square, None)
+            print ('piece checking', piece_c)
             if piece_c:
                 piece_color = piece_c[0]
-                if piece_color == color:
-
-                    valid_moves.extend(get_valid_turns(board_state, color, square, 'computer'))
+                if piece_color == color_char:
+                    moves = get_valid_turns(board_state, color, square, 'computer')
+                    for move in moves:
+                        if move:
+                            valid_moves.append ((square, move))
+    print (valid_moves)
     if valid_moves:
-        random_move = random.choice(valid_moves)
-        return [random_move]
-    return []
+        from_square, to_square = random.choice (valid_moves)
+        print (from_square, to_square)
+        return {'from': from_square, 'to': to_square}
+    return {'from': None, 'to': None}
 
 
             

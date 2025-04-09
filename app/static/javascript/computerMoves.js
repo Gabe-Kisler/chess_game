@@ -1,16 +1,22 @@
-export function getComputerMove (userColor) {
+import { getValidMoves } from "./getMoves.js";
+import { movePiece } from "./turn.js"
+
+export async function getComputerMove (userColor) {
     console.log ('getting computer moves');
-    if (userColor === 'white') {
-        validMoves = getValidMoves (null, 'black', 'computer');
-        takeComputerTurn (validMoves);
+    let validMoves;
+    
+    console.log (window.turn)
+    if (window.userColor === 'white') {
+        validMoves = await getValidMoves (null, 'black', 'computer');
     }
-    else if (userColor === 'black') {
-        validMoves = getValidMoves (null, 'white', 'computer');
-        takeComputerTurn (validMoves);
+    else if (window.userColor === 'black') {
+        validMoves = await getValidMoves (null, 'white', 'computer');
     }
+
+    console.log ('in get computer moves, valid moves', validMoves);
+    takeComputerTurn(validMoves.from, validMoves.to);
 }
 
-function takeComputerTurn (validMoves, squareFrom) {
-    squareTo = validMoves[0];
-    movePice (squareFrom, squareTo);
+function takeComputerTurn (validMoveFrom, validMoveTo) {
+    movePiece (validMoveFrom, validMoveTo);
 }

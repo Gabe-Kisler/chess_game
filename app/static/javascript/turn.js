@@ -1,9 +1,10 @@
 import { removeHighlight } from "./squareHighlight.js";
 import { render_board } from "./renderBoard.js";
 import { getComputerMove } from "./computerMoves.js";
-
+import { addPieceListeners } from "./renderBoard.js";
 
 let moveListeners = {};
+let isComputerMove = false;
 
 export function takeTurn (validMoves, turn_color, currSquare) {
 
@@ -18,16 +19,11 @@ export function takeTurn (validMoves, turn_color, currSquare) {
             moveListeners[move] = { element: moveSquare, handler: moveHandler };
     });
 
-    if (window.turn == 'user') {
-        window.turn == 'computer';
-        getComputerMove (window.userColor, currSquare);
-    }
-    else if (window.turn == 'computer') {
-        window.turn == 'user';
-    }
+
 }
 
 export function movePiece (currSquare, move) {
+    console.log ("move piece called for", window.turn);
     console.log ("moving piece from", currSquare, "to", move);
 
 
@@ -54,7 +50,19 @@ export function movePiece (currSquare, move) {
     .then (response => response.json())
     .then (updatedBoardState => {
         render_board(updatedBoardState);
+        
+        if (window.turn === 'user' && !isComputerMove) {
+            window.turn = 'computer';
+            isComputerMove = true;
+            getComputerMove(window.userColor);
+        } 
+        else if (window.turn === 'computer') {
+            window.turn = 'user';
+            isComputerMove = false;
+            addPieceListeners (updatedBoardState, window.turn);
+        }
     });
+
 
 }
 

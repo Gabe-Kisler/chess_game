@@ -1,5 +1,5 @@
 import { highlightMoves } from './squareHighlight.js';
-import { getPieceClicked } from './renderBoard.js';
+import { getPieceClicked } from './pieceListeners.js';
 import { takeTurn } from "./turn.js";
 
 

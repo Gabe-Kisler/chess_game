@@ -1,8 +1,7 @@
 import { setupBoard } from "./boardSetup.js";
-import { takeTurn } from "./turn.js";
 import { setupDefaults } from "./buttonListeners.js";
 import { setupButtonListeners } from "./buttonListeners.js";
-import { addPieceListeners } from "./renderBoard.js";
+import { addPieceListeners } from "./pieceListeners.js";
 
 let turn = 'user';
 

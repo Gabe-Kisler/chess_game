@@ -1,6 +1,6 @@
 import { getValidMoves } from "./getMoves.js";
 import { movePiece } from "./turn.js"
-import { addPieceListeners } from './renderBoard.js';
+import { addPieceListeners } from './pieceListeners.js';
 
 /*fetch random computer move, calls takeComputerTurn & getValidMoves*/
 export async function getComputerMove (userColor) {

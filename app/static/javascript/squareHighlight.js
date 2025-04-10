@@ -1,6 +1,3 @@
-import { getPieceClicked } from './renderBoard.js';
-import { takeTurn } from './turn.js';
-
 /*highlights valid moves on board*/
 export function highlightMoves (squares) {
     removeHighlight(squares);

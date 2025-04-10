@@ -27,10 +27,6 @@ const blackButton = document.getElementById('blackButton');
 const p1Timer = document.getElementById('player-1-time');
 const p2Timer = document.getElementById('player-2-time');
 
-let userColor = '';
-let time = '';
-let difficulty = '';
-
 
 /*sets up default indicators on five min, medium, and white buttons*/
 export function setupDefaults () {

@@ -1,7 +1,7 @@
 import { removeHighlight } from "./squareHighlight.js";
 import { render_board } from "./renderBoard.js";
 import { getComputerMove } from "./computerMoves.js";
-import { addPieceListeners } from "./renderBoard.js";
+import { addPieceListeners } from "./pieceListeners.js";
 
 let moveListeners = {};
 let isComputerMove = false;

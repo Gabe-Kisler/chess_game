@@ -1,6 +1,7 @@
 import { getPieceClicked } from './renderBoard.js';
 import { takeTurn } from './turn.js';
 
+/*highlights valid moves on board*/
 export function highlightMoves (squares) {
     removeHighlight(squares);
     
@@ -11,6 +12,7 @@ export function highlightMoves (squares) {
     }
 }
 
+/*removes highlight*/
 export function removeHighlight () {
     const highlightedSquare = document.querySelectorAll('.valid-move');
 

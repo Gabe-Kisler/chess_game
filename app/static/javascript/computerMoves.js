@@ -2,6 +2,7 @@ import { getValidMoves } from "./getMoves.js";
 import { movePiece } from "./turn.js"
 import { addPieceListeners } from './renderBoard.js';
 
+/*fetch random computer move, calls takeComputerTurn & getValidMoves*/
 export async function getComputerMove (userColor) {
     console.log ('getting computer moves');
     let validMoves;
@@ -18,8 +19,7 @@ export async function getComputerMove (userColor) {
     takeComputerTurn(validMoves.from, validMoves.to);
 }
 
+/*take computer turn, calls movePiece*/
 function takeComputerTurn (validMoveFrom, validMoveTo) {
     movePiece (validMoveFrom, validMoveTo);
-
-
 }

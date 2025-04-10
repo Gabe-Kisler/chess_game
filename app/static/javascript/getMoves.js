@@ -4,7 +4,9 @@ import { takeTurn } from "./turn.js";
 
 
 
-
+/*fetches valid moves for piece selected,
+  if user - highlight valid moves & call takeTurn
+  if computer - return valid moves*/
 export async function getValidMoves (squareSelected, turn_color, turn) {
     if (window.turn === 'user') {
     const pieceSelected = getPieceClicked (squareSelected, window.boardState);

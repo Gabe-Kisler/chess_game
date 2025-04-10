@@ -6,6 +6,7 @@ import { addPieceListeners } from "./renderBoard.js";
 let moveListeners = {};
 let isComputerMove = false;
 
+
 export function takeTurn (validMoves, turn_color, currSquare) {
 
 
@@ -64,6 +65,7 @@ export function movePiece (currSquare, move) {
     });
 
 
+    window.pieceSelected = null;
 }
 
  

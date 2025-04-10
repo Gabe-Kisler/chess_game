@@ -12,6 +12,7 @@ let pieceListeners = {};
 let moveListeners = {};
 let validMoves = '';
 
+/*removes current listeners & sets board state, calls renderSquares*/
 export function render_board(boardState) {
     const rows = ['1', '2', '3', '4', '5', '6', '7', '8'];
     const columns = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
@@ -30,6 +31,7 @@ export function render_board(boardState) {
     isBoardRendered = true;
 }
 
+/*renders pieces from current board state*/
 function renderSquares(boardState, rows, columns) {
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
@@ -47,6 +49,7 @@ function renderSquares(boardState, rows, columns) {
     }
 }
 
+/*adds listeners to pieces*/
 export function addPieceListeners(boardState, turn) {
     const rows = ['1', '2', '3', '4', '5', '6', '7', '8'];
     const columns = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
@@ -58,17 +61,30 @@ export function addPieceListeners(boardState, turn) {
             const piece = boardState[currSquareId];
             const imageElement = document.getElementById(`${currSquareId}-img`);
 
-            if (imageElement && piece && !pieceListeners[currSquareId]) {
+            if (imageElement && piece) {
+                if (pieceListeners[currSquareId]) {
+                    const { element, handler } = pieceListeners[currSquareId];
+                    element.removeEventListener('click', handler);
+                    delete pieceListeners[currSquareId];
+                }
                 const handler = function () {
+                    if (window.turn != 'user') {
+                        return;
+                    }
+
+                    if (window.pieceSelected != null) {
+                        return;
+                    }
+
                     removeHighlight();
-                    pieceSelected = getPieceClicked(currSquareId, boardState);
+                    window.pieceSelected = getPieceClicked(currSquareId, boardState);
                     pieceListeners[currSquareId] = { element: imageElement, handler };
 
-                    if (turn === 'user' && pieceSelected[0] === 'w') {
+                    if (turn === 'user' && window.pieceSelected[0] === 'w') {
                         validMoves = getValidMoves(currSquareId, 'white', turn);
                         highlightMoves(validMoves);
                     }
-                    if (turn === 'user' && pieceSelected[0] === 'b') {
+                    if (turn === 'user' && window.pieceSelected[0] === 'b') {
                         validMoves = getValidMoves(currSquareId, 'black', turn);
                         highlightMoves(validMoves);
                     }
@@ -81,6 +97,7 @@ export function addPieceListeners(boardState, turn) {
     }
 }
 
+/*returns piece clicked*/
 export function getPieceClicked(squareId, boardState) {
     const piece = boardState[squareId];
     return piece;

@@ -1,5 +1,6 @@
 import { getValidMoves } from "./getMoves.js";
 import { movePiece } from "./turn.js"
+import { addPieceListeners } from './renderBoard.js';
 
 export async function getComputerMove (userColor) {
     console.log ('getting computer moves');
@@ -19,4 +20,6 @@ export async function getComputerMove (userColor) {
 
 function takeComputerTurn (validMoveFrom, validMoveTo) {
     movePiece (validMoveFrom, validMoveTo);
+
+
 }

@@ -4,6 +4,7 @@ import { takeTurn } from "./turn.js";
 
 
 
+
 export async function getValidMoves (squareSelected, turn_color, turn) {
     if (window.turn === 'user') {
     const pieceSelected = getPieceClicked (squareSelected, window.boardState);

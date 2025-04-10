@@ -23,7 +23,7 @@ class Bishop(Piece):
             moves.append(square)
 
             if not is_square_empty (square, board) and get_piece_color (square, board) != self.color:
-                        break
+                break
 
         for square in forward_left_diagonal_squares:
             if int(square[0]) < 1:
@@ -36,7 +36,7 @@ class Bishop(Piece):
             moves.append(square)
 
             if not is_square_empty (square, board) and get_piece_color (square, board) != self.color:
-                        break
+                break
 
         backward_right_diagonal_squares, backwards_left_diagonal_squares = get_diagonal_squares_backward (self.position, 7)
         for square in backward_right_diagonal_squares:
@@ -45,12 +45,12 @@ class Bishop(Piece):
             if square[1] not in columns:
                 continue
             if not is_square_empty (square, board) and get_piece_color (square, board) == self.color:
-                continue
+                break
 
             moves.append(square)
 
             if not is_square_empty (square, board) and get_piece_color (square, board) != self.color:
-                        break
+                break
 
         for square in backwards_left_diagonal_squares:
             if int(square[0]) < 1:
@@ -58,11 +58,11 @@ class Bishop(Piece):
             if square[1] not in columns:
                 continue
             if not is_square_empty (square, board) and get_piece_color (square, board) == self.color:
-                continue
+                break
 
             moves.append(square)
 
             if not is_square_empty (square, board) and get_piece_color (square, board) != self.color:
-                        break
+                break
 
         return moves

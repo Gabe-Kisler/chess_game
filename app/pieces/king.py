@@ -23,7 +23,7 @@ class King(Piece):
                     if not is_square_empty(square, board) and get_piece_color(square, board) == self.color:
                         break
 
-                moves.append(square)
+                    moves.append(square)
 
             if dir == 'right':
                 squares = get_right_squares(self.position, 1)
@@ -44,7 +44,7 @@ class King(Piece):
                         if get_piece_color (square, board) == self.color:
                             break
 
-                moves.append(square)
+                    moves.append(square)
 
             if dir == 'down':
                 squares = get_backwards_squares (self.position, 1)
@@ -54,7 +54,7 @@ class King(Piece):
                     if get_piece_color (square, board) == self.color:
                         break
 
-                moves.append(square)
+                    moves.append(square)
 
             if dir == 'diagonal_up':
                 diagonal_right, diagonal_left = get_diagonal_squares_forward (self.position, 1)
@@ -63,20 +63,20 @@ class King(Piece):
                         break
                     if right[1] not in columns:
                         break
-                    if not is_square_empty (square, board) and get_piece_color (square, board) == self.color:
+                    if not is_square_empty (right, board) and get_piece_color (right, board) == self.color:
                         break
 
-                moves.append(square)
+                    moves.append(right)
 
                 for left in diagonal_left:
                     if int(left[0]) < 1:
                         break
                     if left[1] not in columns:
                         break
-                    if not is_square_empty (square, board) and get_piece_color (square, board) == self.color:
+                    if not is_square_empty (left, board) and get_piece_color (left, board) == self.color:
                         break
 
-                moves.append(square)
+                    moves.append(left)
 
             if dir == 'diagonal_down':
                 diagonal_right_down, diagonal_left_down = get_diagonal_squares_backward (self.position, 1)
@@ -85,20 +85,20 @@ class King(Piece):
                         break
                     if right[1] not in columns:
                         break
-                    if not is_square_empty (square, board) and get_piece_color (square, board) == self.color:
+                    if not is_square_empty (right, board) and get_piece_color (right, board) == self.color:
                         break
 
-                moves.append(square)
+                    moves.append(right)
 
                 for left in diagonal_left_down:
                     if int(left[0]) < 1:
                         break
                     if left[1] not in columns:
                         break
-                    if not is_square_empty (square, board) and get_piece_color (square, board) == self.color:
+                    if not is_square_empty (left, board) and get_piece_color (left, board) == self.color:
                         break
 
-                moves.append(square)
+                    moves.append(left)
 
 
         return moves

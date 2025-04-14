@@ -27,6 +27,7 @@ def get_valid_turns_route ():
     square = data.get('square')
     turn = data.get('turn')
     
+    print ('getting valid turns for...', color)
     if turn == 'user':
         valid_turns = get_valid_turns (board_state, color, square, turn)
     elif turn == 'computer':

@@ -1,6 +1,7 @@
 import { getValidMoves } from './getMoves.js';
 import { highlightMoves } from './squareHighlight.js';
 import { removeHighlight } from './squareHighlight.js';
+import { getComputerMove } from './computerMoves.js';
 
 let pieceListeners = {};
 let validMoves = '';
@@ -9,6 +10,9 @@ let validMoves = '';
 export function addPieceListeners(boardState, turn) {
     const rows = ['1', '2', '3', '4', '5', '6', '7', '8'];
     const columns = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+
+    window.turn = turn;
+
 
     
     for (let i = 0; i < 8; i++) {
@@ -24,23 +28,28 @@ export function addPieceListeners(boardState, turn) {
                     delete pieceListeners[currSquareId];
                 }
                 const handler = function () {
-                    if (window.turn != 'user') {
+                    if (window.turn != 'user' && window.userColor === 'black') {
+                        /*getComputerMove ('black');*/
                         return;
                     }
-
+                    
                     if (window.pieceSelected != null) {
                         return;
                     }
+
+                    console.log ('window values, piece selected', window.pieceSelected);
+                    console.log ('turn', window.turn);
+                    console.log ('user color', window.userColor);
 
                     removeHighlight();
                     window.pieceSelected = getPieceClicked(currSquareId, boardState);
                     pieceListeners[currSquareId] = { element: imageElement, handler };
 
-                    if (turn === 'user' && window.pieceSelected[0] === 'w') {
+                    if (window.turn === 'user' && window.userColor === 'white' && window.pieceSelected[0] === 'w') {
                         validMoves = getValidMoves(currSquareId, 'white', turn);
                         highlightMoves(validMoves);
                     }
-                    if (turn === 'user' && window.pieceSelected[0] === 'b') {
+                    if (window.turn === 'user' && window.userColor === 'black' && window.pieceSelected[0] === 'b') {
                         validMoves = getValidMoves(currSquareId, 'black', turn);
                         highlightMoves(validMoves);
                     }

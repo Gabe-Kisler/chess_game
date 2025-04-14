@@ -1,6 +1,7 @@
 
 columns = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
 
+##get the next N forward squares from given square
 def get_forward_squares (square_id, num):
   
     row = int(square_id[0])
@@ -17,6 +18,7 @@ def get_forward_squares (square_id, num):
     
     return forward_squares
 
+##get the next N backward squares from given square
 def get_backwards_squares (square_id, num):
     print ('get backwards squares called! square id:', square_id)
 
@@ -34,6 +36,7 @@ def get_backwards_squares (square_id, num):
     
     return backward_squares
 
+##get N squares forward diagonal right and diagonal left from given square
 def get_diagonal_squares_forward (square_id, num):
     row = int(square_id[0])
     column = square_id[1]
@@ -61,6 +64,8 @@ def get_diagonal_squares_forward (square_id, num):
         forward_left_diagonal_squares.append (square)
 
     return forward_right_diagonal_squares, forward_left_diagonal_squares
+
+##get the next N squares backward diagonal left and right from given square
 def get_diagonal_squares_backward (square_id, num):
     row = int(square_id[0])
     column = square_id[1]
@@ -90,6 +95,7 @@ def get_diagonal_squares_backward (square_id, num):
 
     return backward_right_diagonal_squares, backward_left_diagonal_squares
 
+##get N squares right of given square
 def get_right_squares (square_id, num):
     row = int(square_id[0])
     column = square_id[1]
@@ -108,7 +114,7 @@ def get_right_squares (square_id, num):
 
     return right_squares
 
-
+##get N squares left of given square
 def get_left_squares (square_id, num):
     row = int(square_id[0])
     column = square_id[1]
@@ -127,12 +133,14 @@ def get_left_squares (square_id, num):
 
     return left_squares
 
+##return if given square is empty
 def is_square_empty (square_id, board_state):
     square_id = str(square_id)
     if square_id not in board_state:
         return True
     return board_state.get(square_id) is None
 
+##get piece color on given square
 def get_piece_color (square_id, board_state):
     square_id = str(square_id)
     piece = board_state.get(square_id)

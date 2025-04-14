@@ -74,7 +74,9 @@ class Pawn(Piece):
     
 
     def is_first_turn (self):
+        print ('self color', self.color)
         row = int(self.position[0])
+        print ('row', row)
         if self.color == 'white' and row == 2:
             return True
         elif self.color == 'black' and row == 7:

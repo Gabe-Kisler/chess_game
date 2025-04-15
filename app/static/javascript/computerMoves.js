@@ -15,6 +15,7 @@ export async function getComputerMove () {
     
     
     console.log (window.turn)
+
     if (window.userColor === 'white') {
         validMoves = await getValidMoves (null, 'black', 'computer');
     }
@@ -22,11 +23,24 @@ export async function getComputerMove () {
         validMoves = await getValidMoves (null, 'white', 'computer');
     }
 
-    console.log ('in get computer moves, valid moves', validMoves);
-    setTimeout(() => { takeComputerTurn(validMoves.from, validMoves.to); }, delay); 
+    console.log ('checkmate/stalemate test', validMoves);
+    if (validMoves.from === null && validMoves.to === null) {
+        console.log ('no moves', validMoves);
+        if (validMoves.checkmate) {
+            console.log('checkmate');
+        }
+        else if (validMoves.stalemate) {
+            console.log ('stalemate');
+        }
+    }
+    else {
+        console.log ('in get computer moves, valid moves', validMoves);
+        setTimeout(() => { takeComputerTurn(validMoves.from, validMoves.to); }, delay); 
+    }
+
 }
 
 /*take computer turn, calls movePiece*/
-function takeComputerTurn (validMoveFrom, validMoveTo) {
+export function takeComputerTurn (validMoveFrom, validMoveTo) {
     movePiece (validMoveFrom, validMoveTo);
 }

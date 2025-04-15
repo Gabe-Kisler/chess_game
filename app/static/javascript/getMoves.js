@@ -1,29 +1,37 @@
 import { highlightMoves } from './squareHighlight.js';
 import { getPieceClicked } from './pieceListeners.js';
 import { takeTurn } from "./turn.js";
-import { stopTimer } from './timer.js';
-import { startTimer } from './timer.js';
+import { takeComputerTurn } from "./computerMoves.js";
 
 
 /*fetches valid moves for piece selected,
   if user - highlight valid moves & call takeTurn
   if computer - return valid moves*/
 export async function getValidMoves (squareSelected, turn_color, turn) {
+    let delay = Math.floor(Math.random() * 7001);
+
     if (window.turn === 'user') {
     const pieceSelected = getPieceClicked (squareSelected, window.boardState);
     fetch ('/get-valid-turns', {
         method: 'POST',
-        body: JSON.stringify ({piece: pieceSelected, color: turn_color, square: squareSelected, turn: turn}),
+        body: JSON.stringify ({piece: pieceSelected, color: turn_color, square: squareSelected, turn: window.turn}),
         headers: {
             'Content-Type': 'application/json'
         }
     })
     .then (response => response.json())
     .then (validMoves => {
-        stopTimer();
-        startTimer();
         console.log ('valid moves:', validMoves);
         highlightMoves (validMoves);
+        if (typeof validMoves === 'string') {
+            if (validMoves === 'checkmate'){
+                console.log ('checkmate');
+            }
+            else if (validMoves === 'stalemate') {
+                console.log ('stalemate');
+            }
+            return;
+        }
         takeTurn (validMoves, turn_color, squareSelected);
     })
     .catch (error => {
@@ -43,5 +51,5 @@ export async function getValidMoves (squareSelected, turn_color, turn) {
         .catch (error => {
             console.log ('could not fetch valid turns', error);
         });
-        }
     }
+}

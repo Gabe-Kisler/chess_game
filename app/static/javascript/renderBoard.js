@@ -1,10 +1,16 @@
 import { pieceImages } from './constants.js';
+import { removeHighlight } from './squareHighlight.js';
 import { removePieceListeners } from './turn.js';
 import { removeValidMoveListeners } from './turn.js';
+import { getValidMoves } from './getMoves.js';
+import { highlightMoves } from './squareHighlight.js';
+import { getComputerMove } from './computerMoves.js';
 
 let isBoardRendered = false;
+let pieceSelected = '';
 let pieceListeners = {};
 let moveListeners = {};
+let validMoves = '';
 
 /*removes current listeners & sets board state, calls renderSquares*/
 export function render_board(boardState) {

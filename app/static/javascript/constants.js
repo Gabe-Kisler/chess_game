@@ -1,3 +1,4 @@
+
 export const pieceImages = {
     "wP": "/static/resources/white-pawn.svg",
     "bP": "/static/resources/black-pawn.svg",

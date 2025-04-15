@@ -16,7 +16,6 @@ def setup_board(user_color):
 
 def update_board(square_from, square_to, board_state):
     ## function to update board after move is made
-    print('original board state:', board_state)
 
     piece_to_move = board_state.get(square_from)
     if not piece_to_move:

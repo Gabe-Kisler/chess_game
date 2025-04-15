@@ -1,7 +1,8 @@
 import { highlightMoves } from './squareHighlight.js';
 import { getPieceClicked } from './pieceListeners.js';
 import { takeTurn } from "./turn.js";
-
+import { stopTimer } from './timer.js';
+import { startTimer } from './timer.js';
 
 
 /*fetches valid moves for piece selected,
@@ -19,6 +20,8 @@ export async function getValidMoves (squareSelected, turn_color, turn) {
     })
     .then (response => response.json())
     .then (validMoves => {
+        stopTimer();
+        startTimer();
         console.log ('valid moves:', validMoves);
         highlightMoves (validMoves);
         takeTurn (validMoves, turn_color, squareSelected);

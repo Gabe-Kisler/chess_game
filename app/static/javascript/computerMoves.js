@@ -1,11 +1,18 @@
 import { getValidMoves } from "./getMoves.js";
-import { movePiece } from "./turn.js"
-import { addPieceListeners } from './pieceListeners.js';
+import { movePiece } from "./turn.js";
+import { stopTimer } from "./timer.js";
+import { startTimer } from "./timer.js";
 
 /*fetch random computer move, calls takeComputerTurn & getValidMoves*/
-export async function getComputerMove (userColor) {
+export async function getComputerMove () {
     console.log ('getting computer moves');
     let validMoves;
+
+    stopTimer();
+    startTimer();
+
+    let delay = Math.floor(Math.random() * 7001);
+    
     
     console.log (window.turn)
     if (window.userColor === 'white') {
@@ -16,7 +23,7 @@ export async function getComputerMove (userColor) {
     }
 
     console.log ('in get computer moves, valid moves', validMoves);
-    takeComputerTurn(validMoves.from, validMoves.to);
+    setTimeout(() => { takeComputerTurn(validMoves.from, validMoves.to); }, delay); 
 }
 
 /*take computer turn, calls movePiece*/

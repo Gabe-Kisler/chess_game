@@ -1,7 +1,8 @@
 import { getValidMoves } from './getMoves.js';
 import { highlightMoves } from './squareHighlight.js';
 import { removeHighlight } from './squareHighlight.js';
-import { getComputerMove } from './computerMoves.js';
+import { stopTimer } from './timer.js';
+import { startTimer } from './timer.js';
 
 let pieceListeners = {};
 let validMoves = '';
@@ -13,7 +14,8 @@ export function addPieceListeners(boardState, turn) {
 
     window.turn = turn;
 
-
+    stopTimer();
+    startTimer();
     
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {

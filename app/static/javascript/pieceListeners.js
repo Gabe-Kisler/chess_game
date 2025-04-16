@@ -16,7 +16,15 @@ export function addPieceListeners(boardState, turn) {
 
     stopTimer();
     startTimer();
-    
+
+    for (const squareId in pieceListeners) {
+        const { element, handler } = pieceListeners[squareId];
+        element.removeEventListener('click', handler);
+        delete pieceListeners[squareId];
+    }
+
+
+
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
             let currSquareId = rows[i] + columns[j];
@@ -29,40 +37,55 @@ export function addPieceListeners(boardState, turn) {
                     element.removeEventListener('click', handler);
                     delete pieceListeners[currSquareId];
                 }
+
+                const clickedPiece = boardState[currSquareId];
+                const isPieceWhite = clickedPiece[0] === 'w';
+                const isPieceBlack = clickedPiece[0] === 'b';
+                const isUserWhite = window.userColor === 'white';
+                const isUserBlack = window.userColor === 'black';
+                const isUserPiece = (isUserWhite && isPieceWhite) || (isUserBlack && isPieceBlack);
+            
+                if (window.turn === 'user') {
+                    if (isUserPiece) {
+                        imageElement.classList.add('user-piece');
+                    } else {
+                        imageElement.classList.remove('user-piece');
+                    }
+                }
+
+
                 const handler = function () {
-                    if (window.turn != 'user' && window.userColor === 'black') {
-                        /*getComputerMove ('black');*/
-                        return;
-                    }
-                    
-                    if (window.pieceSelected != null) {
+                    if (window.turn !== 'user') {
                         return;
                     }
 
-                    console.log ('window values, piece selected', window.pieceSelected);
-                    console.log ('turn', window.turn);
-                    console.log ('user color', window.userColor);
-
-                    removeHighlight();
-                    window.pieceSelected = getPieceClicked(currSquareId, boardState);
-                    pieceListeners[currSquareId] = { element: imageElement, handler };
-
-                    if (window.turn === 'user' && window.userColor === 'white' && window.pieceSelected[0] === 'w') {
-                        validMoves = getValidMoves(currSquareId, 'white', turn);
-                        highlightMoves(validMoves);
+                    if (isUserPiece) {
+                        imageElement.classList.add('user-piece');
+                    } 
+                    else {
+                        imageElement.classList.remove('user-piece');
                     }
-                    if (window.turn === 'user' && window.userColor === 'black' && window.pieceSelected[0] === 'b') {
-                        validMoves = getValidMoves(currSquareId, 'black', turn);
+
+                    if (isUserPiece) {
+                        if (window.pieceSelected === boardState[currSquareId] && window.squareSelected === currSquareId) {
+                            return; 
+                        }
+                        window.pieceSelected = clickedPiece;
+                        window.squareSelected = currSquareId;
+                        validMoves = getValidMoves(currSquareId, window.userColor, turn);
+                        removeHighlight();
                         highlightMoves(validMoves);
+                    } else {
+                        window.pieceSelected = null;
                     }
                 };
                 imageElement.addEventListener('click', handler);
                 pieceListeners[currSquareId] = { element: imageElement, handler };
-                
             }
         }
     }
 }
+        
 
 /*returns piece clicked*/
 export function getPieceClicked(squareId, boardState) {

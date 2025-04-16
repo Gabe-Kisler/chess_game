@@ -140,10 +140,13 @@ img {
     border: none;
     display: none;
     outline: none;
+}
+
+.user-piece {
     cursor: pointer;
 }
 
-img:hover {
+.user-piece:hover {
     transition: 0.1s all ease-in-out;
     background-color: rgba(211, 211, 211, .1);
     transform: scale(1.2);

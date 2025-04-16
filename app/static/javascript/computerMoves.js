@@ -2,6 +2,7 @@ import { getValidMoves } from "./getMoves.js";
 import { movePiece } from "./turn.js";
 import { stopTimer } from "./timer.js";
 import { startTimer } from "./timer.js";
+import { handleComputerLoss } from "./handleEndGame.js"
 
 /*fetch random computer move, calls takeComputerTurn & getValidMoves*/
 export async function getComputerMove () {
@@ -27,9 +28,11 @@ export async function getComputerMove () {
     if (validMoves.from === null && validMoves.to === null) {
         console.log ('no moves', validMoves);
         if (validMoves.checkmate) {
+            handleComputerLoss ('checkmate', window.userColor);
             console.log('checkmate');
         }
         else if (validMoves.stalemate) {
+            handleComputerLoss ('stalemate', window.userColor);
             console.log ('stalemate');
         }
     }

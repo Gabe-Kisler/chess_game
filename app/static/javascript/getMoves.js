@@ -1,7 +1,7 @@
 import { highlightMoves } from './squareHighlight.js';
 import { getPieceClicked } from './pieceListeners.js';
 import { takeTurn } from "./turn.js";
-import { takeComputerTurn } from "./computerMoves.js";
+import { handleUserLoss } from "./handleEndGame.js"
 
 
 /*fetches valid moves for piece selected,
@@ -25,9 +25,11 @@ export async function getValidMoves (squareSelected, turn_color, turn) {
         highlightMoves (validMoves);
         if (typeof validMoves === 'string') {
             if (validMoves === 'checkmate'){
+                handleUserLoss('checkmate');
                 console.log ('checkmate');
             }
             else if (validMoves === 'stalemate') {
+                handleUserLoss('stalemate');
                 console.log ('stalemate');
             }
             return;

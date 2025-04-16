@@ -15,15 +15,21 @@ export function startTimer () {
         }
         else if (window.time === '5:00') {
             userTime = {minutes: 5, seconds: 0};
-            computerTime = {minutes: 10, seconds: 0};
+            computerTime = {minutes: 5, seconds: 0};
         }
         else if (window.time === '10:00') {
             userTime = {minutes: 10, seconds: 0};
             computerTime = {minutes: 10, seconds: 0};
         }
+    
 
-    clearInterval(userTimerInterval);
-    clearInterval(computerTimerInterval);
+    if (window.userColor === 'white') {
+        clearInterval(userTimerInterval);
+    }
+    if (window.userColor === 'black') {
+        clearInterval(computerTimerInterval);
+    }
+
 
     }
 

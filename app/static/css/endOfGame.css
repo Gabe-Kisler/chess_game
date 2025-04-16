@@ -1,0 +1,40 @@
+#endGameCard {
+    position: fixed;
+    top: 0;
+    left: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index:999999; 
+    gap: 5%;
+    width: 100%;
+    margin-left: 2%;
+    height: 100%;
+  }
+
+  #endGameCardContent {
+    background-color: var(--secondary);
+    position: relative; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 10px var(--background-color) solid;
+    border-radius: 10px;
+    width: 25%;
+    height: 15vh;
+    z-index: 2;
+    padding: 20px;
+}
+
+h2 {
+    font-family: 'Fira Sans';
+    font-size: 50px;
+    font-weight: 500;
+    color: var(--text-color);
+    font-style: italic;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+}
+

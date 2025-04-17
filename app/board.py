@@ -1,10 +1,10 @@
 def setup_board(user_color):
     if user_color == 'black':
         return {
-            "1a": "bR", "1b": "bN", "1c": "bB", "1d": "bQ", "1e": "bK", "1f": "bB", "1g": "bN", "1h": "bR",
+            "1a": "bR", "1b": "bN", "1c": "bB", "1d": "bK", "1e": "bQ", "1f": "bB", "1g": "bN", "1h": "bR",
             "2a": "bP", "2b": "bP", "2c": "bP", "2d": "bP", "2e": "bP", "2f": "bP", "2g": "bP", "2h": "bP",
             "7a": "wP", "7b": "wP", "7c": "wP", "7d": "wP", "7e": "wP", "7f": "wP", "7g": "wP", "7h": "wP",
-            "8a": "wR", "8b": "wN", "8c": "wB", "8d": "wQ", "8e": "wK", "8f": "wB", "8g": "wN", "8h": "wR"
+            "8a": "wR", "8b": "wN", "8c": "wB", "8d": "wK", "8e": "wQ", "8f": "wB", "8g": "wN", "8h": "wR"
         }
     else:
         return {

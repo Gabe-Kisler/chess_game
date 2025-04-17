@@ -8,6 +8,7 @@ export function startTimer () {
     const p1Timer = document.getElementById('player-1-time');
     const p2Timer = document.getElementById('player-2-time');
 
+    
     if (!userTime || !computerTime) {
         if (window.time ==='2:30') {
             userTime = {minutes: 2, seconds: 30};

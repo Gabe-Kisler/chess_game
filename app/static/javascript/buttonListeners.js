@@ -33,7 +33,7 @@ export function setupDefaults () {
     mediumButton.classList.add('selected');
     window.difficulty = 'medium';
     fiveButton.classList.add('selected');
-    window.time = 'five';
+    window.time = '5:00';
     whiteButton.classList.add('selected');
     window.userColor = 'white';
     if (window.userColor == 'white') {

@@ -21,6 +21,9 @@
     gap: 2vh;
 }
 
+#player-1 {
+    margin-bottom: 34%;
+}
 form {
     font-family: 'Fira Sans';
     font-size: 25px;
@@ -28,5 +31,25 @@ form {
     font-weight: bold;
     padding: 0;
     margin: 0;
+}
+
+#profile-button {
+    width: 18%;
+    aspect-ratio: 1/1;
+    background-size: cover;
+    background-color: transparent;
+    border: none;
+    align-self: flex-end;
+    justify-content: flex-start;
+    margin-bottom: 30%;
+    margin-right: 2vw;
+}
+
+#profile {
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: pointer;
+    color: var(--border-color)
 }
 

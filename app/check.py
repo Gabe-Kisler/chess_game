@@ -28,30 +28,24 @@ def is_king_in_check (board_state, color, turn):
     for square, piece in board_state.items():
         if isinstance(piece, str) and len(piece) >= 2 and piece[0] == opponent_color:
             piece_obj = get_piece_object(piece[1], opponent_color_name, square)
-            print(f"Got piece_obj for {square}: {piece_obj}, type: {type(piece_obj)}")
             if piece_obj:
                 if isinstance(piece_obj, Pawn):
-                    print(f"Calling get_attacking_moves for pawn at {square}")
                     moves = piece_obj.get_attacking_moves (board_state, turn)
                 else:
                     moves = piece_obj.get_valid_moves(board_state, opponent_color_name)
                 
                 if king_position in moves:
-                    print(f"King at {king_position} in check from {square} with {piece}")
                     return True
     
     return False
 
 def will_move_put_king_in_check(board_state, color, from_square, to_square, turn):
 
-    print ('checking if move will put in check with color', color, 'from_square', from_square, 'to_square', to_square)
     board_copy = copy.deepcopy(board_state) 
     
-    print (board_state)
     board_copy[to_square] = board_copy[from_square]
     del board_copy[from_square]
 
-    print (board_copy)
     return is_king_in_check(board_copy, color, turn)
     
 def get_piece_object(piece_type, color, squareId):

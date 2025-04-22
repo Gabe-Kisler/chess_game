@@ -25,6 +25,5 @@ def update_board(square_from, square_to, board_state):
     square_to = str(square_to)
     new_board_state[square_to] = piece_to_move
     del new_board_state[square_from]
-    print ('new board state after update:', new_board_state)
     return new_board_state
 

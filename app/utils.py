@@ -20,7 +20,6 @@ def get_forward_squares (square_id, num):
 
 ##get the next N backward squares from given square
 def get_backwards_squares (square_id, num):
-    print ('get backwards squares called! square id:', square_id)
 
     row = int(square_id[0])
     column = square_id[1]

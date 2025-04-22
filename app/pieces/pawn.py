@@ -4,7 +4,7 @@ from app.utils import get_forward_squares, get_diagonal_squares_forward, is_squa
 moves = []
 
 class Pawn(Piece):
-    def get_valid_moves (self, board, turn):
+    def get_valid_moves (self, board, turn, color):
      ## LOOP THROUGH
             ## if first turn, check up two, both diagonals
             ## if not up one, both diagonals
@@ -14,7 +14,7 @@ class Pawn(Piece):
         moves = []
         forward_moves = []
         if (turn == 'user'):
-            if self.is_first_turn ():
+            if self.is_first_turn ('user'):
                 forward_moves = get_forward_squares(self.position, 2)
                 for forward_move in forward_moves:
                     if is_square_empty (forward_move, board):
@@ -39,7 +39,7 @@ class Pawn(Piece):
                         moves.append(diagonal_left)
 
         elif (turn == 'computer'):
-            if self.is_first_turn ():
+            if self.is_first_turn ('computer'):
                 forward_moves = get_backwards_squares(self.position, 2)
                 for forward_move in forward_moves:
                     if is_square_empty (forward_move, board):
@@ -65,7 +65,6 @@ class Pawn(Piece):
         return moves
             
     def get_attacking_moves (self, board, turn):
-        print ('pawn attacking moves entered turn:', turn)
         moves = []
         if (turn == 'computer'):
             diagonal_move_right, diagonal_move_left = get_diagonal_squares_forward (self.position, 1)
@@ -77,15 +76,13 @@ class Pawn(Piece):
         moves.extend (diagonal_move_left)
         moves.extend (diagonal_move_right)
 
-        print ('pawn attacking moves for', self.position, 'moves', moves)
-
         return moves
     
 
-    def is_first_turn (self):
+    def is_first_turn (self, turn):
         row = int(self.position[0])
-        if self.color == 'white' and row == 2:
+        if turn == 'user' and row == 2:
             return True
-        elif self.color == 'black' and row == 7:
+        elif turn == 'computer' and row == 7:
             return True
         return False

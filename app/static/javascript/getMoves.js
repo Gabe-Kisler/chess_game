@@ -14,7 +14,7 @@ export async function getValidMoves (squareSelected, turn_color, turn) {
     const pieceSelected = getPieceClicked (squareSelected, window.boardState);
     fetch ('/get-valid-turns', {
         method: 'POST',
-        body: JSON.stringify ({piece: pieceSelected, color: turn_color, square: squareSelected, turn: window.turn}),
+        body: JSON.stringify ({piece: pieceSelected, color: turn_color, square: squareSelected, turn: window.turn, difficulty: window.difficulty}),
         headers: {
             'Content-Type': 'application/json'
         }
@@ -44,7 +44,7 @@ export async function getValidMoves (squareSelected, turn_color, turn) {
         const pieceSelected = getPieceClicked (squareSelected, window.boardState);
         return fetch ('/get-valid-turns', {
             method: 'POST',
-            body: JSON.stringify ({piece: pieceSelected, color: turn_color, square: squareSelected, turn: turn}),
+            body: JSON.stringify ({piece: pieceSelected, color: turn_color, square: squareSelected, turn: turn, difficulty: window.difficulty}),
             headers: {
                 'Content-Type': 'application/json'
             }
